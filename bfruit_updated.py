@@ -45,7 +45,6 @@ class Menu:
         
         self.backgroundadded = pygame.image.load("data/menubg/added.png")
         self.sav = pygame.image.load("data/menubg/sav.png")
-        self.highscore = (pygame.image.load("data/menubg/highscore.png"))
         self.menu = []
         self.menubg = []
 
@@ -88,7 +87,6 @@ class Menu:
             if self.showhs == True:
                 self.screen.blit(self.sav, (0, 60))
                 self.screen.blit(self.sav, (0, 120))
-                self.screen.blit(self.highscore, (50, 60))
                 font=pygame.font.Font("data/LiberationSans-Regular.ttf", 25)
                 text_surface = font.render(scr, True, self.white)
                 self.screen.blit(text_surface, (295, 110))
