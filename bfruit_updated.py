@@ -46,7 +46,7 @@ class Menu:
         self.backgroundadded = pygame.image.load("data/menubg/added.png")
         self.sav = pygame.image.load("data/menubg/sav.png")
         self.highscore = (pygame.image.load("data/menubg/highscore.png"))
-        self.menu = ["  New Game  ", "  Settings  ", "  High score  ", "  Exit to Linux "]
+        self.menu = []
         self.menubg = []
         self.menubg.append(pygame.image.load("data/menubg/al.png").convert())
         self.menubg.append(pygame.image.load("data/menubg/ci.png").convert())
@@ -67,33 +67,12 @@ class Menu:
         self.showhs = False # show hs in menu
         while True:
             for self.event in pygame.event.get():
-                if self.selectedmenu == 2:
-                    self.showhs = True
-                else:
-                    self.showhs = False
                 if self.event.type == pygame.QUIT:
                     exit()
                 if self.event.type == pygame.KEYDOWN:
                     self.bsound.play()
                     if self.event.key == pygame.K_LEFT:
-                        if self.selectedmenu == 0:
-                            self.selectedmenu = len(self.menu)-1
-                        else:
-                            self.selectedmenu = self.selectedmenu-1
-                    elif self.event.key == pygame.K_RIGHT:
-                        if self.selectedmenu == len(self.menu)-1:
-                            self.selectedmenu = 0
-                        else:
-                            self.selectedmenu = self.selectedmenu+1
-                    elif self.event.key == pygame.K_RETURN:
-                        if self.selectedmenu == 0:
-                            plc = Game()
-                        elif self.selectedmenu == 1:
-                            plc = Settings()
-                        elif self.selectedmenu == 2:
-                            self.selectedmenu = 2 # :)
-                        else:
-                            exit()
+                        plc = Game()
                     if self.event.key == pygame.K_ESCAPE:
                         exit()
             # 1st layer: background color
@@ -107,9 +86,9 @@ class Menu:
             # 3rd layer: transparent image
             self.screen.blit(self.background, (0, 0))
             
-            font = pygame.font.Font("data/LiberationSans-Regular.ttf", 15)
-            text_surface = font.render("Balazs Nagy - BFruit - "+VERSION , True, self.white)
-            self.screen.blit(text_surface, (3, 460))
+            font = pygame.font.Font("data/LiberationSans-Regular.ttf", 30)
+            text_surface = font.render("Start Game" , True, self.white)
+            self.screen.blit(text_surface, (100, 460))
             
             if self.showhs == True:
                 self.screen.blit(self.sav, (0, 60))
