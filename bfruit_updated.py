@@ -81,8 +81,6 @@ class Menu:
             self.bg.set_alpha(sz)
             self.screen.blit(self.bg, (0, 0))
             self.screen.blit(self.backgroundadded, (0, 0))
-            # 2nd layer: menus
-            self.crt_menu()
             # 3rd layer: transparent image
             self.screen.blit(self.background, (0, 0))
             
@@ -127,17 +125,6 @@ class Menu:
         for n in self.menu:
             self.menuall = self.menuall+n
             
-    def crt_menu(self):
-        nmb = 0
-        xpos = 0
-        while nmb <= self.selectedmenu:
-            xpos = xpos-self.mid[nmb]
-            nmb = nmb+1
-        xpos = xpos+self.mid[self.selectedmenu]/2
-        # draw menus on screen
-        font = pygame.font.Font("data/LiberationSans-Regular.ttf", 25)
-        text_surface = font.render(self.menuall, True, self.white)
-        self.screen.blit(text_surface, (320+xpos, 15))
 
 # Settings menu################################
 class Settings:
