@@ -42,19 +42,13 @@ class Menu:
         self.maincolor = [0, 0, 0]
         self.white = [255, 255, 255]
         self.bsound = pygame.mixer.Sound("data/sounds/CLICK10A.WAV")
-        self.background = pygame.image.load("data/menubg/menubg.png")
+        
         self.backgroundadded = pygame.image.load("data/menubg/added.png")
         self.sav = pygame.image.load("data/menubg/sav.png")
         self.highscore = (pygame.image.load("data/menubg/highscore.png"))
         self.menu = []
         self.menubg = []
-        '''
-        self.menubg.append(pygame.image.load("data/menubg/al.png").convert())
-        self.menubg.append(pygame.image.load("data/menubg/ci.png").convert())
-        self.menubg.append(pygame.image.load("data/menubg/he.png").convert())
-        self.menubg.append(pygame.image.load("data/menubg/na.png").convert())
-        self.menubg.append(pygame.image.load("data/menubg/di.png").convert())
-        '''
+
         self.menuall = ""
         self.selectedmenu = 0
         self.mid = []
