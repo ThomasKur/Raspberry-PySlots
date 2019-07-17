@@ -48,11 +48,13 @@ class Menu:
         self.highscore = (pygame.image.load("data/menubg/highscore.png"))
         self.menu = []
         self.menubg = []
+        '''
         self.menubg.append(pygame.image.load("data/menubg/al.png").convert())
         self.menubg.append(pygame.image.load("data/menubg/ci.png").convert())
         self.menubg.append(pygame.image.load("data/menubg/he.png").convert())
         self.menubg.append(pygame.image.load("data/menubg/na.png").convert())
         self.menubg.append(pygame.image.load("data/menubg/di.png").convert())
+        '''
         self.menuall = ""
         self.selectedmenu = 0
         self.mid = []
@@ -77,7 +79,7 @@ class Menu:
                         exit()
             # 1st layer: background color
             self.screen.fill(self.maincolor)
-            self.bg = self.menubg[szam]
+            
             self.bg.set_alpha(sz)
             self.screen.blit(self.bg, (0, 0))
             self.screen.blit(self.backgroundadded, (0, 0))
@@ -86,7 +88,7 @@ class Menu:
             
             font = pygame.font.Font("data/LiberationSans-Regular.ttf", 30)
             text_surface = font.render("Start Game" , True, self.white)
-            self.screen.blit(text_surface, (100, 460))
+            self.screen.blit(text_surface, (100, 300))
             
             if self.showhs == True:
                 self.screen.blit(self.sav, (0, 60))
@@ -96,20 +98,7 @@ class Menu:
                 text_surface = font.render(scr, True, self.white)
                 self.screen.blit(text_surface, (295, 110))
             
-            szamlalo = szamlalo + 4
             
-            if szamlalo < 245:
-                sz = sz + 4
-            if szamlalo > 244:
-                sz = sz - 4
-                
-            if szamlalo > 490:
-                sz = 0
-                szamlalo = 0
-                if szam == len(self.menubg)-1:
-                    szam = 0
-                else:
-                    szam = szam + 1
             
             
             pygame.display.update()
@@ -137,12 +126,14 @@ class Settings:
         self.backgroundadded = pygame.image.load("data/menubg/added.png")
         self.sav = pygame.image.load("data/menubg/sav.png")
         self.menu = ["  Fullscreen  ", "  Back to main  "]
+        '''
         self.menubg = []
         self.menubg.append(pygame.image.load("data/menubg/al.png").convert())
         self.menubg.append(pygame.image.load("data/menubg/ci.png").convert())
         self.menubg.append(pygame.image.load("data/menubg/he.png").convert())
         self.menubg.append(pygame.image.load("data/menubg/na.png").convert())
         self.menubg.append(pygame.image.load("data/menubg/di.png").convert())
+        '''
         self.menuall = ""
         self.selectedmenu = 0
         self.mid = []
@@ -177,7 +168,7 @@ class Settings:
                             plc = Menu()
             # 1st layer: background color
             self.screen.fill(self.maincolor)
-            self.bg = self.menubg[szam]
+            
             self.bg.set_alpha(sz)
             self.screen.blit(self.bg, (0, 0))
             self.screen.blit(self.backgroundadded, (0, 0))
