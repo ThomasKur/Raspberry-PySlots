@@ -860,5 +860,5 @@ if __name__ == "__main__":
             plc = Menu()
         '''
     
-        plc = Menu()
-        pygame.display.update()
+    plc = Menu()
+    pygame.display.update()
