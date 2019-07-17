@@ -694,6 +694,7 @@ if __name__ == "__main__":
     # pygame init, set display
     pygame.init()
     screen = pygame.display.set_mode([640, 480], 0, 24)
+    pygame.display.toggle_fullscreen()
     pygame.display.set_caption("BFruit")
     pygame.mouse.set_visible(False)
     
