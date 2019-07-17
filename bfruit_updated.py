@@ -75,8 +75,7 @@ class Menu:
             
             self.screen.blit(self.backgroundadded, (0, 0))
             # 3rd layer: transparent image
-            self.screen.blit(self.background, (0, 0))
-            
+           
             font = pygame.font.Font("data/LiberationSans-Regular.ttf", 50)
             text_surface = font.render("Linde Slot - Start Game" , True, self.white)
             self.screen.blit(text_surface, (100, 300))
