@@ -80,8 +80,6 @@ class Menu:
             # 1st layer: background color
             self.screen.fill(self.maincolor)
             
-            self.bg.set_alpha(sz)
-            self.screen.blit(self.bg, (0, 0))
             self.screen.blit(self.backgroundadded, (0, 0))
             # 3rd layer: transparent image
             self.screen.blit(self.background, (0, 0))
