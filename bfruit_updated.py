@@ -697,7 +697,7 @@ if __name__ == "__main__":
     pygame.display.toggle_fullscreen()
     pygame.display.set_caption("BFruit")
     pygame.mouse.set_visible(False)
-    
+    '''
     # intro
     border = pygame.image.load("data/intro/border.png").convert()
     point = pygame.image.load("data/intro/point.png").convert()
@@ -858,7 +858,7 @@ if __name__ == "__main__":
                 pygame.display.update()
         if time.clock() - starttime > 5:
             plc = Menu()
+        '''
     
-    
-    
+        plc = Menu()
         pygame.display.update()
