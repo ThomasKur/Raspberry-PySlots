@@ -84,9 +84,12 @@ class Menu:
             # 3rd layer: transparent image
             self.screen.blit(self.background, (0, 0))
             
-            font = pygame.font.Font("data/LiberationSans-Regular.ttf", 30)
-            text_surface = font.render("Start Game" , True, self.white)
+            font = pygame.font.Font("data/LiberationSans-Regular.ttf", 50)
+            text_surface = font.render("Linde Slot - Start Game" , True, self.white)
             self.screen.blit(text_surface, (100, 300))
+            font_present = pygame.font.Font("data/LiberationSans-Regular.ttf", 30)
+            text_present = font_present.render("Heitere Casino presents:" , True, self.white)
+            self.screen.blit(text_present, (10, 10))
             
             if self.showhs == True:
                 self.screen.blit(self.sav, (0, 60))
@@ -440,7 +443,7 @@ class Game:
             self.wins[4] = self.show[2]
             
     def winner(self):
-        self.lastwin = 0
+        ## self.lastwin = 0
         for n in self.wins:
             winsu = self.bet*int(n)
             winsum = winsu + self.bet
