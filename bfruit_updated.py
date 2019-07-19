@@ -343,15 +343,15 @@ class Game:
         self.screen.blit(text_surface, (1400, 350))
     
     def drawl(self):        
-        self.screen.blit(pygame.image.load("data/img/"+str(self.show[0])+".png"), (36, 46))
-        self.screen.blit(pygame.image.load("data/img/"+str(self.show[1])+".png"), (36, 174))
-        self.screen.blit(pygame.image.load("data/img/"+str(self.show[2])+".png"), (36, 302))
-        self.screen.blit(pygame.image.load("data/img/"+str(self.show[3])+".png"), (165, 46))
-        self.screen.blit(pygame.image.load("data/img/"+str(self.show[4])+".png"), (165, 174))
-        self.screen.blit(pygame.image.load("data/img/"+str(self.show[5])+".png"), (165, 302))
-        self.screen.blit(pygame.image.load("data/img/"+str(self.show[6])+".png"), (295, 46))
-        self.screen.blit(pygame.image.load("data/img/"+str(self.show[7])+".png"), (295, 174))
-        self.screen.blit(pygame.image.load("data/img/"+str(self.show[8])+".png"), (295, 302))
+        self.screen.blit(pygame.image.load("data/img/"+str(self.show[0])+".png"), (170, 46))
+        self.screen.blit(pygame.image.load("data/img/"+str(self.show[1])+".png"), (170, 174))
+        self.screen.blit(pygame.image.load("data/img/"+str(self.show[2])+".png"), (170, 302))
+        self.screen.blit(pygame.image.load("data/img/"+str(self.show[3])+".png"), (512, 46))
+        self.screen.blit(pygame.image.load("data/img/"+str(self.show[4])+".png"), (512, 174))
+        self.screen.blit(pygame.image.load("data/img/"+str(self.show[5])+".png"), (512, 302))
+        self.screen.blit(pygame.image.load("data/img/"+str(self.show[6])+".png"), (854, 46))
+        self.screen.blit(pygame.image.load("data/img/"+str(self.show[7])+".png"), (854, 174))
+        self.screen.blit(pygame.image.load("data/img/"+str(self.show[8])+".png"), (854, 302))
 
     # random images
     def randi(self):
