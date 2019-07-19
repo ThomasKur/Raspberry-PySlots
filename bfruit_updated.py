@@ -193,7 +193,7 @@ class Game:
                 text_surface = font.render("Game Over", True, [255, 0, 0])
                 self.screen.blit(text_surface, (70, 190))
             
-            self.screen.blit(self.rlayer, (37, 48))
+            self.screen.blit(self.rlayer, (150, 30))
             self.screen.blit(self.windowlayer, (0, 0))
             
             if self.keys == 0 and self.menu == "h":
@@ -508,7 +508,7 @@ if __name__ == "__main__":
 
     # pygame init, set display
     pygame.init()
-    screen = pygame.display.set_mode([0,0])
+    screen = pygame.display.set_mode([1920,1080])
     pygame.display.toggle_fullscreen()
     pygame.display.set_caption("Rocker Slot")
     pygame.mouse.set_visible(False)
