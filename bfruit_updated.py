@@ -57,9 +57,8 @@ class Menu:
         self.listmenuall()
         # mainloop
         sz = 0
-        szam = 0
-        szamlalo = 0
-        self.showhs = False # show hs in menu
+
+        
         while True:
             for self.event in pygame.event.get():
                 if self.event.type == pygame.QUIT:
@@ -76,32 +75,20 @@ class Menu:
             self.screen.blit(self.backgroundadded, (0, 0))
             # 3rd layer: transparent image
            
-            font = pygame.font.Font("data/LiberationSans-Regular.ttf", 50)
-            text_surface = font.render("Rock Slot - Start Game" , True, self.white)
-            self.screen.blit(text_surface, (100, 300))
-            font_present = pygame.font.Font("data/LiberationSans-Regular.ttf", 30)
-            text_present = font_present.render("Heitere Casino presents:" , True, self.white)
-            self.screen.blit(text_present, (10, 10))
+            font = pygame.font.Font("data/BRISTRT0.TTF", 100)
+            text_surface = font.render("Start Game" , True, self.white)
+            self.screen.blit(text_surface, (100, 600))
             
-            if self.showhs == True:
-                self.screen.blit(self.sav, (0, 60))
-                self.screen.blit(self.sav, (0, 120))
-                font=pygame.font.Font("data/LiberationSans-Regular.ttf", 25)
-                text_surface = font.render(scr, True, self.white)
-                self.screen.blit(text_surface, (295, 110))
+            self.screen.blit(self.sav, (0, 60))
+            self.screen.blit(self.sav, (0, 120))
+            font=pygame.font.Font("data/LiberationSans-Regular.ttf", 25)
+            text_surface = font.render("Current Highscore: "+scr, True, self.white)
+            self.screen.blit(text_surface, (100, 800))
 
             pygame.display.update()
              
             
-    def menuid(self):
-        for n in self.menu:
-            font = pygame.font.Font("data/LiberationSans-Regular.ttf", 25)
-            text_surface = font.render(n, True, self.white)
-            self.mid.append(text_surface.get_width())
-            
-    def listmenuall(self):
-        for n in self.menu:
-            self.menuall = self.menuall+n
+    
             
 
 
@@ -333,9 +320,6 @@ class Game:
         #animation
         digifont = pygame.font.Font("data/DIGITAL2.ttf",24)
         text_surface = digifont.render("88888888888", True, [60, 0, 0])
-        self.screen.blit(text_surface, (470, 50))
-        
-        text_surface = digifont.render("F1 FOR HELP", True, [255, 0, 0])
         self.screen.blit(text_surface, (470, 50))
         
         font = pygame.font.Font("data/LiberationSans-Regular.ttf", 15)
