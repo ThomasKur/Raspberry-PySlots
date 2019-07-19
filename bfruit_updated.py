@@ -310,37 +310,37 @@ class Game:
         #animation
         digifont = pygame.font.Font("data/DIGITAL2.ttf",24)
         text_surface = digifont.render("88888888888", True, [60, 0, 0])
-        self.screen.blit(text_surface, (470, 50))
+        self.screen.blit(text_surface, (1370, 50))
         
         font = pygame.font.Font("data/LiberationSans-Regular.ttf", 15)
         text_surface = font.render("Bet:", True, [230, 255, 255])
-        self.screen.blit(text_surface, (500, 185))
+        self.screen.blit(text_surface, (1400, 185))
         # multip
         digifont = pygame.font.Font("data/DIGITAL2.ttf",24)
         text_surface = digifont.render("88", True, [60, 0, 0])
-        self.screen.blit(text_surface, (500, 210))
+        self.screen.blit(text_surface, (1400, 210))
         text_surface = digifont.render(str(self.bet), True, [255, 0, 0])
-        self.screen.blit(text_surface, (500, 210))
+        self.screen.blit(text_surface, (1400, 210))
         
         font = pygame.font.Font("data/LiberationSans-Regular.ttf", 15)
         text_surface = font.render("Winner Paid:", True, [230, 255, 255])
-        self.screen.blit(text_surface, (500, 255))
+        self.screen.blit(text_surface, (1400, 255))
         # last win
         digifont = pygame.font.Font("data/DIGITAL2.ttf",24)
         text_surface = digifont.render("888", True, [60, 0, 0])
-        self.screen.blit(text_surface, (500, 280))
+        self.screen.blit(text_surface, (1400, 280))
         text_surface = digifont.render(str(self.lastwin), True, [255, 0, 0])
-        self.screen.blit(text_surface, (500, 280))
+        self.screen.blit(text_surface, (1400, 280))
         
         font = pygame.font.Font("data/LiberationSans-Regular.ttf", 15)
         text_surface = font.render("Credit:", True, [230, 255, 255])
-        self.screen.blit(text_surface, (500, 325))
+        self.screen.blit(text_surface, (1400, 325))
         # startsum
         digifont = pygame.font.Font("data/DIGITAL2.ttf",24)
         text_surface = digifont.render("888888", True, [60, 0, 0])
-        self.screen.blit(text_surface, (500, 350))
+        self.screen.blit(text_surface, (1400, 350))
         text_surface = digifont.render(str(self.credit), True, [255, 0, 0])
-        self.screen.blit(text_surface, (500, 350))
+        self.screen.blit(text_surface, (1400, 350))
     
     def drawl(self):        
         self.screen.blit(pygame.image.load("data/img/"+str(self.show[0])+".png"), (36, 46))
