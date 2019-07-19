@@ -51,10 +51,7 @@ class Menu:
         self.menuall = ""
         self.selectedmenu = 0
         self.mid = []
-        # get menu width
-        self.menuid()
-        # all menu in one:
-        self.listmenuall()
+
         # mainloop
         sz = 0
 
@@ -86,11 +83,6 @@ class Menu:
             self.screen.blit(text_surface, (100, 800))
 
             pygame.display.update()
-             
-            
-    
-            
-
 
 # the game###########################
 class Game:
