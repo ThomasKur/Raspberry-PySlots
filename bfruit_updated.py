@@ -41,10 +41,11 @@ class Menu:
         self.screen = screen
         self.maincolor = [0, 0, 0]
         self.white = [255, 255, 255]
+        self.red = [255, 0, 0]
         self.bsound = pygame.mixer.Sound("data/sounds/CLICK10A.WAV")
         
         self.backgroundadded = pygame.image.load("data/menubg/added.png")
-        self.sav = pygame.image.load("data/menubg/sav.png")
+        
         self.menu = []
         self.menubg = []
 
@@ -73,11 +74,8 @@ class Menu:
             # 3rd layer: transparent image
            
             font = pygame.font.Font("data/BRISTRT0.TTF", 100)
-            text_surface = font.render("Start Game" , True, self.white)
+            text_surface = font.render("Start Game" , True, self.red)
             self.screen.blit(text_surface, (100, 600))
-            
-            self.screen.blit(self.sav, (0, 60))
-            self.screen.blit(self.sav, (0, 120))
             font=pygame.font.Font("data/LiberationSans-Regular.ttf", 25)
             text_surface = font.render("Current Highscore: "+scr, True, self.white)
             self.screen.blit(text_surface, (100, 800))
