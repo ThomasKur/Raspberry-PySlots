@@ -77,7 +77,7 @@ class Menu:
             # 3rd layer: transparent image
            
             font = pygame.font.Font("data/LiberationSans-Regular.ttf", 50)
-            text_surface = font.render("Linde Slot - Start Game" , True, self.white)
+            text_surface = font.render("Rock Slot - Start Game" , True, self.white)
             self.screen.blit(text_surface, (100, 300))
             font_present = pygame.font.Font("data/LiberationSans-Regular.ttf", 30)
             text_present = font_present.render("Heitere Casino presents:" , True, self.white)
@@ -534,9 +534,9 @@ if __name__ == "__main__":
 
     # pygame init, set display
     pygame.init()
-    screen = pygame.display.set_mode([640, 480], 0, 24)
+    screen = pygame.display.set_mode([0,0])
     pygame.display.toggle_fullscreen()
-    pygame.display.set_caption("BFruit")
+    pygame.display.set_caption("Rocker Slot")
     pygame.mouse.set_visible(False)
     '''
     # intro
