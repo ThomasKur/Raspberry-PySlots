@@ -35,7 +35,7 @@ VERSION = "0.1.2"
 GPIO.setmode(GPIO.BOARD) ## Use board pin numbering
 GPIO.setup(37, GPIO.OUT) ## Setup GPIO Pin 37 to OUT
 GPIO.setup(38, GPIO.OUT) ## Setup GPIO Pin 38 to OUT
-GPIO.setup(39, GPIO.OUT) ## Setup GPIO Pin 38 to OUT
+GPIO.setup(40, GPIO.OUT) ## Setup GPIO Pin 38 to OUT
 
 # main menu###########################
 class Menu:
@@ -431,32 +431,32 @@ class Game:
     def WinnerLedOn (self):
         GPIO.output(37,True) ## Set GPIO pin 37 High
         GPIO.output(38,True)
-        GPIO.output(39,False)
+        GPIO.output(40,False)
 
     def WinnerLedOff (self):
         GPIO.output(37,False) ## Set on GPIO pin 37 Low
         GPIO.output(38,False)
-        GPIO.output(39,False)
+        GPIO.output(40,False)
 
     def RunningLedOn (self):
         GPIO.output(37,True) ## Set GPIO pin 37 High
         GPIO.output(38,False)
-        GPIO.output(39,False)
+        GPIO.output(40,False)
 
     def RunningLedOff (self):
         GPIO.output(37,False) ## Set on GPIO pin 37 Low
         GPIO.output(38,False)
-        GPIO.output(39,False)
+        GPIO.output(40,False)
     
     def NewHighscoreLedOn (self):
         GPIO.output(37,True) ## Set GPIO pin 37 High
         GPIO.output(38,True)
-        GPIO.output(39,True)
+        GPIO.output(40,True)
 
     def NewHighscoreLedOff (self):
         GPIO.output(37,False) ## Set on GPIO pin 37 Low
         GPIO.output(38,False)
-        GPIO.output(39,False)
+        GPIO.output(40,False)
 
     def helpmenu(self):
         pygame.draw.line(self.screen, [176, 176, 176], (50, 250), (590, 250), 400)
