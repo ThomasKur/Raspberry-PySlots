@@ -99,6 +99,7 @@ class Game:
         self.SlotColumnSpace = 10
         self.StatisticPosition = [1400,300]
         self.StatisitcRowSpace = 60
+        self.StatisitcFontSize = 50
         self.CHeckLineWidth = 20
         
         self.screen = screen
@@ -331,7 +332,7 @@ class Game:
         text_surface = font.render("Bet:", True, [230, 255, 255])
         self.screen.blit(text_surface, self.StatisticPosition)
         
-        digifont = pygame.font.Font("data/DIGITAL2.ttf",40)
+        digifont = pygame.font.Font("data/DIGITAL2.ttf",self.StatisitcFontSize)
         text_surface = digifont.render(str(self.bet), True, [255, 0, 0])
         self.screen.blit(text_surface, (self.StatisticPosition[0], self.StatisticPosition[1] + self.StatisitcRowSpace))
         
@@ -340,7 +341,7 @@ class Game:
         text_surface = font.render("Winner Paid:", True, [230, 255, 255])
         self.screen.blit(text_surface, (self.StatisticPosition[0], self.StatisticPosition[1] + 3 * self.StatisitcRowSpace))
         
-        digifont = pygame.font.Font("data/DIGITAL2.ttf",40)
+        digifont = pygame.font.Font("data/DIGITAL2.ttf",self.StatisitcFontSize)
         text_surface = digifont.render(str(self.lastwin), True, [255, 0, 0])
         self.screen.blit(text_surface, (self.StatisticPosition[0], self.StatisticPosition[1] + 4 * self.StatisitcRowSpace))
         
@@ -348,7 +349,7 @@ class Game:
         text_surface = font.render("Credit:", True, [230, 255, 255])
         self.screen.blit(text_surface, (self.StatisticPosition[0], self.StatisticPosition[1] + 6 * self.StatisitcRowSpace))
         # startsum
-        digifont = pygame.font.Font("data/DIGITAL2.ttf",40)
+        digifont = pygame.font.Font("data/DIGITAL2.ttf",self.StatisitcFontSize)
         text_surface = digifont.render(str(self.credit), True, [255, 0, 0])
         self.screen.blit(text_surface, (self.StatisticPosition[0], self.StatisticPosition[1] + 7 * self.StatisitcRowSpace))
     
@@ -425,8 +426,8 @@ class Game:
         if winsum > self.bet:
             self.credit = self.credit + winsum
             self.lastwin = self.lastwin + winsum
-        self.beepsound.play()
-        self.WinnerLedOn() ## Set GPIO pin 26 High
+            self.beepsound.play()
+            self.WinnerLedOn() ## Set GPIO pin 26 High
             
     def WinnerLedOn (self):
         GPIO.output(37,True) ## Set GPIO pin 37 High
