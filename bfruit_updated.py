@@ -425,8 +425,8 @@ class Game:
         ## self.lastwin = 0
         winsum = 0
         for n in self.wins:
-            winsum = winsum + self.bet* self.WinPoints[int(n + 1)]
-        if winsum > self.bet:
+            winsum = winsum + (self.bet * self.WinPoints[int(n + 1)])
+        if winsum = 0:
             self.credit = self.credit + winsum
             self.lastwin = self.lastwin + winsum
             self.beepsound.play()
