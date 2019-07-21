@@ -92,6 +92,11 @@ class Game:
         self.bet = 1
         self.lastwin = 0
         self.show = []
+        self.SlotPosition = [150,30]
+        self.SlotItemSize = [300,300]
+        self.SlotColumnSpace = 10
+        self.StatisticPosition = [300,300]
+        self.StatisitcRowSpace = 100
         
         self.screen = screen
         
@@ -191,9 +196,11 @@ class Game:
             if self.credit == 0 and self.bet == 0:
                 font = pygame.font.Font("data/LiberationSans-Regular.ttf", 55)
                 text_surface = font.render("Game Over", True, [255, 0, 0])
-                self.screen.blit(text_surface, (70, 190))
-            
-            self.screen.blit(self.rlayer, (150, 30))
+                textpos = text_surface.get_rect()
+                textpos.center = self.background.get_rect().center
+                self.screen.blit(text_surface, textpos)
+                
+            self.screen.blit(self.rlayer, self.SlotPosition)
             self.screen.blit(self.windowlayer, (0, 0))
             
             if self.keys == 0 and self.menu == "h":
@@ -265,42 +272,42 @@ class Game:
             self.screen.blit(self.background, (0, 0))
             
             if szama > 2:
-                self.screen.blit(rollaf[len(rollaf)-3], (36, 46))
-                self.screen.blit(rollaf[len(rollaf)-2], (36, 174))
-                self.screen.blit(rollaf[len(rollaf)-1], (36, 302))
+                self.screen.blit(rollaf[len(rollaf)-3], (self.SlotPosition[0], self.SlotPosition[1]))
+                self.screen.blit(rollaf[len(rollaf)-2], (self.SlotPosition[0], self.SlotPosition[1] + self.SlotItemSize[1]))
+                self.screen.blit(rollaf[len(rollaf)-1], (self.SlotPosition[0], self.SlotPosition[1] + (2*self.SlotItemSize[1])))
                 szama = szama - 1
                 del(rollaf[len(rollaf)-1])
             else:
-                self.screen.blit(rollaf[len(rollaf)-3], (36, 46))
-                self.screen.blit(rollaf[len(rollaf)-2], (36, 174))
-                self.screen.blit(rollaf[len(rollaf)-1], (36, 302))
+                self.screen.blit(rollaf[len(rollaf)-3], (self.SlotPosition[0], self.SlotPosition[1]))
+                self.screen.blit(rollaf[len(rollaf)-2], (self.SlotPosition[0], self.SlotPosition[1] + self.SlotItemSize[1]))
+                self.screen.blit(rollaf[len(rollaf)-1], (self.SlotPosition[0], self.SlotPosition[1] + (2*self.SlotItemSize[1])))
                 self.rasound.stop()
                 
             if szamb > 2:
-                self.screen.blit(rollbf[len(rollbf)-3], (165, 46))
-                self.screen.blit(rollbf[len(rollbf)-2], (165, 174))
-                self.screen.blit(rollbf[len(rollbf)-1], (165, 302))
+                self.screen.blit(rollbf[len(rollbf)-3], (self.SlotPosition[0] + self.SlotItemSize[0] + self.SlotColumnSpace, self.SlotPosition[1]))
+                self.screen.blit(rollbf[len(rollbf)-2], (self.SlotPosition[0] + self.SlotItemSize[0] + self.SlotColumnSpace, self.SlotPosition[1] + self.SlotItemSize[1]))
+                self.screen.blit(rollbf[len(rollbf)-1], (self.SlotPosition[0] + self.SlotItemSize[0] + self.SlotColumnSpace, self.SlotPosition[1] + (2*self.SlotItemSize[1])))
                 szamb = szamb - 1
                 del(rollbf[len(rollbf)-1])
             else:
-                self.screen.blit(rollbf[len(rollbf)-3], (165, 46))
-                self.screen.blit(rollbf[len(rollbf)-2], (165, 174))
-                self.screen.blit(rollbf[len(rollbf)-1], (165, 302))
+                self.screen.blit(rollbf[len(rollbf)-3], (self.SlotPosition[0] + self.SlotItemSize[0] + self.SlotColumnSpace, self.SlotPosition[1]))
+                self.screen.blit(rollbf[len(rollbf)-2], (self.SlotPosition[0] + self.SlotItemSize[0] + self.SlotColumnSpace, self.SlotPosition[1] + self.SlotItemSize[1]))
+                self.screen.blit(rollbf[len(rollbf)-1], (self.SlotPosition[0] + self.SlotItemSize[0] + self.SlotColumnSpace, self.SlotPosition[1] + (2*self.SlotItemSize[1])))
                 self.rbsound.stop()
                 
             if szamc > 2:
-                self.screen.blit(rollcf[len(rollcf)-3], (295, 46))
-                self.screen.blit(rollcf[len(rollcf)-2], (295, 174))
-                self.screen.blit(rollcf[len(rollcf)-1], (295, 302))
+                self.screen.blit(rollcf[len(rollcf)-3], (self.SlotPosition[0] + (2 *( self.SlotItemSize[0] + self.SlotColumnSpace)), self.SlotPosition[1]))
+                self.screen.blit(rollcf[len(rollcf)-2], (self.SlotPosition[0] + (2 *( self.SlotItemSize[0] + self.SlotColumnSpace)), self.SlotPosition[1] + self.SlotItemSize[1]))
+                self.screen.blit(rollcf[len(rollcf)-1], (self.SlotPosition[0] + (2 *( self.SlotItemSize[0] + self.SlotColumnSpace)), self.SlotPosition[1] + (2*self.SlotItemSize[1])))
                 szamc = szamc - 1
                 del(rollcf[len(rollcf)-1])
             else:
-                self.screen.blit(rollcf[len(rollcf)-3], (295, 46))
-                self.screen.blit(rollcf[len(rollcf)-2], (295, 174))
-                self.screen.blit(rollcf[len(rollcf)-1], (295, 302))
+                self.screen.blit(rollcf[len(rollcf)-3], (self.SlotPosition[0] + (2 *( self.SlotItemSize[0] + self.SlotColumnSpace)), self.SlotPosition[1]))
+                self.screen.blit(rollcf[len(rollcf)-2], (self.SlotPosition[0] + (2 *( self.SlotItemSize[0] + self.SlotColumnSpace)), self.SlotPosition[1] + self.SlotItemSize[1]))
+                self.screen.blit(rollcf[len(rollcf)-1], (self.SlotPosition[0] + (2 *( self.SlotItemSize[0] + self.SlotColumnSpace)), self.SlotPosition[1] + (2*self.SlotItemSize[1])))
             
             self.draw_side()
-            self.screen.blit(self.rlayer, (37, 48))
+            self.screen.blit(self.rlayer, self.SlotPosition)
             self.screen.blit(self.windowlayer, (0, 0))
             pygame.display.update()
             rollc = rollc - 1
@@ -343,15 +350,15 @@ class Game:
         self.screen.blit(text_surface, (1400, 350))
     
     def drawl(self):        
-        self.screen.blit(pygame.image.load("data/img/"+str(self.show[0])+".png"), (170, 46))
-        self.screen.blit(pygame.image.load("data/img/"+str(self.show[1])+".png"), (170, 174))
-        self.screen.blit(pygame.image.load("data/img/"+str(self.show[2])+".png"), (170, 302))
-        self.screen.blit(pygame.image.load("data/img/"+str(self.show[3])+".png"), (512, 46))
-        self.screen.blit(pygame.image.load("data/img/"+str(self.show[4])+".png"), (512, 174))
-        self.screen.blit(pygame.image.load("data/img/"+str(self.show[5])+".png"), (512, 302))
-        self.screen.blit(pygame.image.load("data/img/"+str(self.show[6])+".png"), (854, 46))
-        self.screen.blit(pygame.image.load("data/img/"+str(self.show[7])+".png"), (854, 174))
-        self.screen.blit(pygame.image.load("data/img/"+str(self.show[8])+".png"), (854, 302))
+        self.screen.blit(pygame.image.load("data/img/"+str(self.show[0])+".png"), (self.SlotPosition[0], self.SlotPosition[1]))
+        self.screen.blit(pygame.image.load("data/img/"+str(self.show[1])+".png"), (self.SlotPosition[0], self.SlotPosition[1] + self.SlotItemSize[1]))
+        self.screen.blit(pygame.image.load("data/img/"+str(self.show[2])+".png"), (self.SlotPosition[0], self.SlotPosition[1] + (2*self.SlotItemSize[1])))
+        self.screen.blit(pygame.image.load("data/img/"+str(self.show[3])+".png"), (self.SlotPosition[0] + self.SlotItemSize[0] + self.SlotColumnSpace, self.SlotPosition[1]))
+        self.screen.blit(pygame.image.load("data/img/"+str(self.show[4])+".png"), (self.SlotPosition[0] + self.SlotItemSize[0] + self.SlotColumnSpace, self.SlotPosition[1] + self.SlotItemSize[1]))
+        self.screen.blit(pygame.image.load("data/img/"+str(self.show[5])+".png"), (self.SlotPosition[0] + self.SlotItemSize[0] + self.SlotColumnSpace, self.SlotPosition[1] + (2*self.SlotItemSize[1])))
+        self.screen.blit(pygame.image.load("data/img/"+str(self.show[6])+".png"), (self.SlotPosition[0] + (2 *( self.SlotItemSize[0] + self.SlotColumnSpace)), self.SlotPosition[1]))
+        self.screen.blit(pygame.image.load("data/img/"+str(self.show[7])+".png"), (self.SlotPosition[0] + (2 *( self.SlotItemSize[0] + self.SlotColumnSpace)), self.SlotPosition[1] + self.SlotItemSize[1]))
+        self.screen.blit(pygame.image.load("data/img/"+str(self.show[8])+".png"), (self.SlotPosition[0] + (2 *( self.SlotItemSize[0] + self.SlotColumnSpace)), self.SlotPosition[1] + (2*self.SlotItemSize[1])))
 
     # random images
     def randi(self):
@@ -392,19 +399,19 @@ class Game:
                 
     def check(self):
         if self.show[0] == self.show[3] == self.show[6]:
-            pygame.draw.line(self.screen, [246, 226, 0], (36, 111), (423, 111), 8)
+            pygame.draw.line(self.screen, [246, 226, 0], (self.SlotPosition[0], 111), (423, 111), 8)
             self.wins[0] = self.show[0]
         if self.show[1] == self.show[4] == self.show[7]:
-            pygame.draw.line(self.screen, [246, 226, 0], (36, 239), (423, 239), 8)
+            pygame.draw.line(self.screen, [246, 226, 0], (self.SlotPosition[0], 239), (423, 239), 8)
             self.wins[1] = self.show[1]
         if self.show[2] == self.show[5] == self.show[8]:
-            pygame.draw.line(self.screen, [246, 226, 0], (36, 367), (423, 367), 8)
+            pygame.draw.line(self.screen, [246, 226, 0], (self.SlotPosition[0], 367), (423, 367), 8)
             self.wins[2] = self.show[2]
         if self.show[0] == self.show[4] == self.show[8]:
-            pygame.draw.line(self.screen, [246, 226, 0], (37, 47), (422, 433), 8)
+            pygame.draw.line(self.screen, [246, 226, 0], self.SlotPosition, (422, 433), 8)
             self.wins[3] = self.show[0]
         if self.show[2] == self.show[4] == self.show[6]:
-            pygame.draw.line(self.screen, [246, 226, 0], (37, 432), (422, 47), 8)
+            pygame.draw.line(self.screen, [246, 226, 0], (self.SlotPosition[0], 432), (422, 47), 8)
             self.wins[4] = self.show[2]
             
     def winner(self):
@@ -512,168 +519,6 @@ if __name__ == "__main__":
     pygame.display.toggle_fullscreen()
     pygame.display.set_caption("Rocker Slot")
     pygame.mouse.set_visible(False)
-    '''
-    # intro
-    border = pygame.image.load("data/intro/border.png").convert()
-    point = pygame.image.load("data/intro/point.png").convert()
-    sun = pygame.image.load("data/intro/sun.png").convert()
-    
-    szam = 0
-    while szam < 256:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                exit()
-            if event.type == pygame.KEYDOWN:
-                plc = Menu()
-        screen.fill([0, 0, 0])
-        border.set_alpha(szam)
-        point.set_alpha(szam)
-        screen.blit(border, (160, 120))
-        screen.blit(point, (185, 150))
-        screen.blit(point, (185, 180))
-        screen.blit(point, (185, 210))
-        screen.blit(point, (185, 240))
-        screen.blit(point, (185, 270))
-        screen.blit(point, (215, 150))
-        screen.blit(point, (215, 180))
-        screen.blit(point, (215, 210))
-        screen.blit(point, (215, 240))
-        screen.blit(point, (215, 270))
-        screen.blit(point, (245, 150))
-        screen.blit(point, (245, 180))
-        screen.blit(point, (245, 210))
-        screen.blit(point, (245, 240))
-        screen.blit(point, (245, 270))
-        screen.blit(point, (275, 150))
-        screen.blit(point, (275, 180))
-        screen.blit(point, (275, 210))
-        screen.blit(point, (275, 240))
-        screen.blit(point, (275, 270))
-        screen.blit(point, (305, 150))
-        screen.blit(point, (305, 180))
-        screen.blit(point, (305, 210))
-        screen.blit(point, (305, 240))
-        screen.blit(point, (305, 270))
-        screen.blit(point, (335, 150))
-        screen.blit(point, (335, 180))
-        screen.blit(point, (335, 210))
-        screen.blit(point, (335, 240))
-        screen.blit(point, (335, 270))
-        screen.blit(point, (365, 150))
-        screen.blit(point, (365, 180))
-        screen.blit(point, (365, 210))
-        screen.blit(point, (365, 240))
-        screen.blit(point, (365, 270))
-        screen.blit(point, (395, 150))
-        screen.blit(point, (395, 180))
-        screen.blit(point, (395, 210))
-        screen.blit(point, (395, 240))
-        screen.blit(point, (395, 270))
-        screen.blit(point, (425, 150))
-        screen.blit(point, (425, 180))
-        screen.blit(point, (425, 210))
-        screen.blit(point, (425, 240))
-        screen.blit(point, (425, 270))
-        szam = szam + 4
-        pygame.display.update()
-    
-    starttime = time.clock()
-    
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                exit()
-            if event.type == pygame.KEYDOWN:
-                plc = Menu()
-                
-        screen.blit(border, (160, 120))
         
-        screen.blit(point, (185, 150))
-        screen.blit(point, (185, 180))
-        screen.blit(point, (185, 210))
-        screen.blit(point, (185, 240))
-        if time.clock() - starttime < 1:
-            screen.blit(point, (185, 270))
-        if time.clock() - starttime < 1.2:
-            screen.blit(point, (215, 150))
-        screen.blit(point, (215, 180))
-        if time.clock() - starttime < 1.15:
-            screen.blit(point, (215, 210))
-        if time.clock() - starttime < 1.2:
-            screen.blit(point, (215, 240))
-        if time.clock() - starttime < 1.23:
-            screen.blit(point, (215, 270))
-        if time.clock() - starttime < 1.18:
-            screen.blit(point, (245, 150))
-        if time.clock() - starttime < 1.2:
-            screen.blit(point, (245, 180))
-        screen.blit(point, (245, 210))
-        if time.clock() - starttime < 1.43:
-            screen.blit(point, (245, 240))
-        if time.clock() - starttime < 1.5:
-            screen.blit(point, (245, 270))
-        screen.blit(point, (275, 150))
-        screen.blit(point, (275, 180))
-        screen.blit(point, (275, 210))
-        screen.blit(point, (275, 240))
-        if time.clock() - starttime < 1.22:
-            screen.blit(point, (275, 270))
-        if time.clock() - starttime < 1.41:
-            screen.blit(point, (305, 150))
-        if time.clock() - starttime < 1.34:
-            screen.blit(point, (305, 180))
-        if time.clock() - starttime < 1.4:
-            screen.blit(point, (305, 210))
-        if time.clock() - starttime < 1.36:
-            screen.blit(point, (305, 240))
-        if time.clock() - starttime < 1.1:
-            screen.blit(point, (305, 270))
-        screen.blit(point, (335, 150))
-        screen.blit(point, (335, 180))
-        screen.blit(point, (335, 210))
-        screen.blit(point, (335, 240))
-        screen.blit(point, (335, 270))
-        screen.blit(point, (365, 150))
-        if time.clock() - starttime < 1.13:
-            screen.blit(point, (365, 180))
-        screen.blit(point, (365, 210))
-        if time.clock() - starttime < 1.4:
-            screen.blit(point, (365, 240))
-        screen.blit(point, (365, 270))
-        screen.blit(point, (395, 150))
-        if time.clock() - starttime < 1.31:
-            screen.blit(point, (395, 180))
-        screen.blit(point, (395, 210))
-        if time.clock() - starttime < 1.25:
-            screen.blit(point, (395, 240))
-        screen.blit(point, (395, 270))
-        if time.clock() - starttime < 1.43:
-            screen.blit(point, (425, 150))
-        screen.blit(point, (425, 180))
-        if time.clock() - starttime < 2.0:
-            screen.blit(point, (425, 210))
-        screen.blit(point, (425, 240))
-        if time.clock() - starttime < 2.4:
-            screen.blit(point, (425, 270))
-            
-        if time.clock() - starttime > 3:
-            font = pygame.font.Font("data/LiberationSans-Regular.ttf", 25)
-            text_surface = font.render("nXBalazs" , True, [255, 255, 255])
-            screen.blit(text_surface, (190, 273))
-        if time.clock() - starttime > 3.5:
-            font = pygame.font.Font("data/LiberationSans-Regular.ttf", 25)
-            text_surface = font.render("games" , True, [255, 255, 255])
-            screen.blit(text_surface, (280, 310))
-        if 5 > time.clock() - starttime > 4:
-            szamsun = 0
-            while szamsun < 100:
-                sun.set_alpha(szamsun)
-                screen.blit(sun, (0, 0))
-                szamsun = szamsun + 1
-                pygame.display.update()
-        if time.clock() - starttime > 5:
-            plc = Menu()
-        '''
-    
     plc = Menu()
     pygame.display.update()
