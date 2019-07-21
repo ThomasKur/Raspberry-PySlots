@@ -129,7 +129,8 @@ class Game:
         img.append(self.imgeight)
         
         self.bgsound.play(loops=-1)
-        
+        self.randi()
+        self.drawl()
         # mainloop
         while True:
             self.screen.fill([0, 0, 0])
@@ -201,7 +202,7 @@ class Game:
                 self.screen.blit(text_surface, textpos)
                 
             # self.screen.blit(self.rlayer, self.SlotPosition)
-            draw_rlayer()
+            self.draw_rlayer()
             self.screen.blit(self.windowlayer, (0, 0))
             
             if self.keys == 0 and self.menu == "h":
@@ -309,7 +310,7 @@ class Game:
             
             self.draw_side()
             # self.screen.blit(self.rlayer, self.SlotPosition)
-            draw_rlayer()
+            self.draw_rlayer()
             self.screen.blit(self.windowlayer, (0, 0))
             pygame.display.update()
             rollc = rollc - 1
