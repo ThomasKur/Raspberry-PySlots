@@ -408,7 +408,7 @@ class Game:
             pygame.draw.line(self.screen, [246, 226, 0], (self.SlotPosition[0], self.SlotPosition[1] + (2.5 * self.SlotItemSize[1])), (self.SlotPosition[0] + (3 * self.SlotItemSize[0]) +( 2 *self.SlotColumnSpace), self.SlotPosition[1] + (2.5 * self.SlotItemSize[1])), 8)
             self.wins[2] = self.show[2]
         if self.show[0] == self.show[4] == self.show[8]:
-            pygame.draw.line(self.screen, [246, 226, 0], self.SlotPosition, (self.SlotPosition[0] + (3 * self.SlotItemSize[0]) +( 2 *self.SlotColumnSpace), self.SlotPosition[1] + (3 * self.SlotItemSize[1]))), 8)
+            pygame.draw.line(self.screen, [246, 226, 0], self.SlotPosition, (self.SlotPosition[0] + (3 * self.SlotItemSize[0]) +( 2 *self.SlotColumnSpace), self.SlotPosition[1] + (3 * self.SlotItemSize[1])), 8)
             self.wins[3] = self.show[0]
         if self.show[2] == self.show[4] == self.show[6]:
             pygame.draw.line(self.screen, [246, 226, 0], (self.SlotPosition[0], self.SlotPosition[1] + (3 * self.SlotItemSize[1])), (self.SlotPosition[0] + (3 * self.SlotItemSize[0]) +( 2 *self.SlotColumnSpace), self.SlotPosition[1]), 8)
