@@ -34,6 +34,8 @@ VERSION = "0.1.2"
 
 GPIO.setmode(GPIO.BOARD) ## Use board pin numbering
 GPIO.setup(37, GPIO.OUT) ## Setup GPIO Pin 37 to OUT
+GPIO.setup(38, GPIO.OUT) ## Setup GPIO Pin 38 to OUT
+GPIO.setup(39, GPIO.OUT) ## Setup GPIO Pin 38 to OUT
 
 # main menu###########################
 class Menu:
@@ -97,6 +99,7 @@ class Game:
         self.SlotColumnSpace = 10
         self.StatisticPosition = [300,300]
         self.StatisitcRowSpace = 100
+        self.CHeckLineWidth = 20
         
         self.screen = screen
         
@@ -141,19 +144,20 @@ class Game:
                     exit()
                     
                 if event.type == pygame.KEYDOWN:
-                    self.ledOff() #sets RasPi GPIO Pin26 to low
+                    self.WinnerLedOff() #sets RasPi GPIO Pin26 to low
                     self.bsound.play()
                     if event.key == pygame.K_LEFT and self.keys == 1:
                         if self.credit > 0:
+                            self.RunningLedOn()
                             if self.credit - self.bet < 0:
                                 self.bet = self.credit
                             self.credit = self.credit - self.bet
                             self.randi()
                             self.roll(img)
-                            
+                            self.check()
                             self.screen.blit(self.background, (0, 0))
                             self.drawl()
-                            self.check()
+                            self.RunningLedOff()
                             self.winner()
                         elif self.credit == 0 and self.bet == 0:
                             self.bgsound.stop()
@@ -324,30 +328,23 @@ class Game:
         pygame.draw.line(self.screen, [0, 0, 0], (self.SlotPosition[0], self.SlotPosition[1] + (2.5 * self.SlotItemSize[1])), (self.SlotPosition[0] + (3 * self.SlotItemSize[0]) +( 2 *self.SlotColumnSpace), self.SlotPosition[1] + (2.5 * self.SlotItemSize[1])), 4)
         pygame.draw.line(self.screen, [0, 0, 0], self.SlotPosition, (self.SlotPosition[0] + (3 * self.SlotItemSize[0]) +( 2 *self.SlotColumnSpace), self.SlotPosition[1] + (3 * self.SlotItemSize[1])), 4)
         pygame.draw.line(self.screen, [0, 0, 0], (self.SlotPosition[0], self.SlotPosition[1] + (3 * self.SlotItemSize[1])), (self.SlotPosition[0] + (3 * self.SlotItemSize[0]) +( 2 *self.SlotColumnSpace), self.SlotPosition[1]), 4)
-    
+
     def draw_side(self):
-        #animation
-        digifont = pygame.font.Font("data/DIGITAL2.ttf",24)
-        text_surface = digifont.render("88888888888", True, [60, 0, 0])
-        self.screen.blit(text_surface, (1370, 50))
-        
+        #Bet
         font = pygame.font.Font("data/LiberationSans-Regular.ttf", 15)
         text_surface = font.render("Bet:", True, [230, 255, 255])
         self.screen.blit(text_surface, (1400, 185))
-        # multip
+        
         digifont = pygame.font.Font("data/DIGITAL2.ttf",24)
-        text_surface = digifont.render("88", True, [60, 0, 0])
-        self.screen.blit(text_surface, (1400, 210))
         text_surface = digifont.render(str(self.bet), True, [255, 0, 0])
         self.screen.blit(text_surface, (1400, 210))
         
+        # last win
         font = pygame.font.Font("data/LiberationSans-Regular.ttf", 15)
         text_surface = font.render("Winner Paid:", True, [230, 255, 255])
         self.screen.blit(text_surface, (1400, 255))
-        # last win
+        
         digifont = pygame.font.Font("data/DIGITAL2.ttf",24)
-        text_surface = digifont.render("888", True, [60, 0, 0])
-        self.screen.blit(text_surface, (1400, 280))
         text_surface = digifont.render(str(self.lastwin), True, [255, 0, 0])
         self.screen.blit(text_surface, (1400, 280))
         
@@ -356,8 +353,6 @@ class Game:
         self.screen.blit(text_surface, (1400, 325))
         # startsum
         digifont = pygame.font.Font("data/DIGITAL2.ttf",24)
-        text_surface = digifont.render("888888", True, [60, 0, 0])
-        self.screen.blit(text_surface, (1400, 350))
         text_surface = digifont.render(str(self.credit), True, [255, 0, 0])
         self.screen.blit(text_surface, (1400, 350))
     
@@ -411,19 +406,19 @@ class Game:
                 
     def check(self):
         if self.show[0] == self.show[3] == self.show[6]:
-            pygame.draw.line(self.screen, [246, 226, 0], (self.SlotPosition[0], self.SlotPosition[1] + (0.5 * self.SlotItemSize[1])), (self.SlotPosition[0] + (3 * self.SlotItemSize[0]) +( 2 *self.SlotColumnSpace), self.SlotPosition[1] + (0.5 * self.SlotItemSize[1])), 8)
+            pygame.draw.line(self.screen, [246, 226, 0], (self.SlotPosition[0], self.SlotPosition[1] + (0.5 * self.SlotItemSize[1])), (self.SlotPosition[0] + (3 * self.SlotItemSize[0]) +( 2 *self.SlotColumnSpace), self.SlotPosition[1] + (0.5 * self.SlotItemSize[1])), self.CHeckLineWidth)
             self.wins[0] = self.show[0]
         if self.show[1] == self.show[4] == self.show[7]:
-            pygame.draw.line(self.screen, [246, 226, 0], (self.SlotPosition[0], self.SlotPosition[1] + (1.5 * self.SlotItemSize[1])), (self.SlotPosition[0] + (3 * self.SlotItemSize[0]) +( 2 *self.SlotColumnSpace), self.SlotPosition[1] + (1.5 * self.SlotItemSize[1])), 8)
+            pygame.draw.line(self.screen, [246, 226, 0], (self.SlotPosition[0], self.SlotPosition[1] + (1.5 * self.SlotItemSize[1])), (self.SlotPosition[0] + (3 * self.SlotItemSize[0]) +( 2 *self.SlotColumnSpace), self.SlotPosition[1] + (1.5 * self.SlotItemSize[1])), self.CHeckLineWidth)
             self.wins[1] = self.show[1]
         if self.show[2] == self.show[5] == self.show[8]:
-            pygame.draw.line(self.screen, [246, 226, 0], (self.SlotPosition[0], self.SlotPosition[1] + (2.5 * self.SlotItemSize[1])), (self.SlotPosition[0] + (3 * self.SlotItemSize[0]) +( 2 *self.SlotColumnSpace), self.SlotPosition[1] + (2.5 * self.SlotItemSize[1])), 8)
+            pygame.draw.line(self.screen, [246, 226, 0], (self.SlotPosition[0], self.SlotPosition[1] + (2.5 * self.SlotItemSize[1])), (self.SlotPosition[0] + (3 * self.SlotItemSize[0]) +( 2 *self.SlotColumnSpace), self.SlotPosition[1] + (2.5 * self.SlotItemSize[1])), self.CHeckLineWidth)
             self.wins[2] = self.show[2]
         if self.show[0] == self.show[4] == self.show[8]:
-            pygame.draw.line(self.screen, [246, 226, 0], self.SlotPosition, (self.SlotPosition[0] + (3 * self.SlotItemSize[0]) +( 2 *self.SlotColumnSpace), self.SlotPosition[1] + (3 * self.SlotItemSize[1])), 8)
+            pygame.draw.line(self.screen, [246, 226, 0], self.SlotPosition, (self.SlotPosition[0] + (3 * self.SlotItemSize[0]) +( 2 *self.SlotColumnSpace), self.SlotPosition[1] + (3 * self.SlotItemSize[1])), self.CHeckLineWidth)
             self.wins[3] = self.show[0]
         if self.show[2] == self.show[4] == self.show[6]:
-            pygame.draw.line(self.screen, [246, 226, 0], (self.SlotPosition[0], self.SlotPosition[1] + (3 * self.SlotItemSize[1])), (self.SlotPosition[0] + (3 * self.SlotItemSize[0]) +( 2 *self.SlotColumnSpace), self.SlotPosition[1]), 8)
+            pygame.draw.line(self.screen, [246, 226, 0], (self.SlotPosition[0], self.SlotPosition[1] + (3 * self.SlotItemSize[1])), (self.SlotPosition[0] + (3 * self.SlotItemSize[0]) +( 2 *self.SlotColumnSpace), self.SlotPosition[1]), self.CHeckLineWidth)
             self.wins[4] = self.show[2]
             
     def winner(self):
@@ -435,13 +430,37 @@ class Game:
                 self.credit = self.credit + winsum
                 self.lastwin = self.lastwin + winsum
                 self.beepsound.play()
-                self.ledOn() ## Set GPIO pin 26 High
+                self.WinnerLedOn() ## Set GPIO pin 26 High
             
-    def ledOn (self):
-        GPIO.output(37,True) ## Set GPIO pin 26 High
-        print "LedOn"
-    def ledOff (self):
-        GPIO.output(37,False) ## Set on GPIO pin 26 Low
+    def WinnerLedOn (self):
+        GPIO.output(37,True) ## Set GPIO pin 37 High
+        GPIO.output(38,True)
+        GPIO.output(39,False)
+
+    def WinnerLedOff (self):
+        GPIO.output(37,False) ## Set on GPIO pin 37 Low
+        GPIO.output(38,False)
+        GPIO.output(39,False)
+
+    def RunningLedOn (self):
+        GPIO.output(37,True) ## Set GPIO pin 37 High
+        GPIO.output(38,False)
+        GPIO.output(39,False)
+
+    def RunningLedOff (self):
+        GPIO.output(37,False) ## Set on GPIO pin 37 Low
+        GPIO.output(38,False)
+        GPIO.output(39,False)
+    
+    def NewHighscoreLedOn (self):
+        GPIO.output(37,True) ## Set GPIO pin 37 High
+        GPIO.output(38,True)
+        GPIO.output(39,True)
+
+    def NewHighscoreLedOff (self):
+        GPIO.output(37,False) ## Set on GPIO pin 37 Low
+        GPIO.output(38,False)
+        GPIO.output(39,False)
 
     def helpmenu(self):
         pygame.draw.line(self.screen, [176, 176, 176], (50, 250), (590, 250), 400)
@@ -468,6 +487,7 @@ class Game:
             self.screen.blit(text_surface, (60, 80))
             text_surface = font.render("New high score: "+str(self.credit), True, [255, 255, 255])
             self.screen.blit(text_surface, (60, 100))
+            self.NewHighscoreLedOn()
             self.writehs(myhsfile)
         else:
             font = pygame.font.Font("data/LiberationSans-Regular.ttf", 15)
@@ -476,6 +496,7 @@ class Game:
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 self.bgsound.stop()
+                self.NewHighscoreLedOff()
                 plc = Menu()
     
     def writehs(self, myhsfile):
