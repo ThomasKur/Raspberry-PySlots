@@ -404,6 +404,7 @@ class Game:
                 self.show.append("1")
                 
     def check(self):
+        self.wins = [0, 0, 0, 0, 0]
         if self.show[0] == self.show[3] == self.show[6]:
             pygame.draw.line(self.screen, [246, 226, 0], (self.SlotPosition[0], self.SlotPosition[1] + (0.5 * self.SlotItemSize[1])), (self.SlotPosition[0] + (3 * self.SlotItemSize[0]) +( 2 *self.SlotColumnSpace), self.SlotPosition[1] + (0.5 * self.SlotItemSize[1])), self.CHeckLineWidth)
             self.wins[0] = self.show[0]
