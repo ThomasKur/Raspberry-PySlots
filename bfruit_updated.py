@@ -200,7 +200,8 @@ class Game:
                 textpos.center = self.background.get_rect().center
                 self.screen.blit(text_surface, textpos)
                 
-            self.screen.blit(self.rlayer, self.SlotPosition)
+            # self.screen.blit(self.rlayer, self.SlotPosition)
+            draw_rlayer()
             self.screen.blit(self.windowlayer, (0, 0))
             
             if self.keys == 0 and self.menu == "h":
@@ -307,11 +308,19 @@ class Game:
                 self.screen.blit(rollcf[len(rollcf)-1], (self.SlotPosition[0] + (2 *( self.SlotItemSize[0] + self.SlotColumnSpace)), self.SlotPosition[1] + (2*self.SlotItemSize[1])))
             
             self.draw_side()
-            self.screen.blit(self.rlayer, self.SlotPosition)
+            # self.screen.blit(self.rlayer, self.SlotPosition)
+            draw_rlayer():
             self.screen.blit(self.windowlayer, (0, 0))
             pygame.display.update()
             rollc = rollc - 1
         self.rcsound.stop()
+    
+    def draw_rlayer(self):
+        pygame.draw.line(self.screen, [0, 0, 0], (self.SlotPosition[0], self.SlotPosition[1] + (0.5 * self.SlotItemSize[1])), (self.SlotPosition[0] + (3 * self.SlotItemSize[0]) +( 2 *self.SlotColumnSpace), self.SlotPosition[1] + (0.5 * self.SlotItemSize[1])), 4)
+        pygame.draw.line(self.screen, [0, 0, 0], (self.SlotPosition[0], self.SlotPosition[1] + (1.5 * self.SlotItemSize[1])), (self.SlotPosition[0] + (3 * self.SlotItemSize[0]) +( 2 *self.SlotColumnSpace), self.SlotPosition[1] + (1.5 * self.SlotItemSize[1])), 4)
+        pygame.draw.line(self.screen, [0, 0, 0], (self.SlotPosition[0], self.SlotPosition[1] + (2.5 * self.SlotItemSize[1])), (self.SlotPosition[0] + (3 * self.SlotItemSize[0]) +( 2 *self.SlotColumnSpace), self.SlotPosition[1] + (2.5 * self.SlotItemSize[1])), 4)
+        pygame.draw.line(self.screen, [0, 0, 0], self.SlotPosition, (self.SlotPosition[0] + (3 * self.SlotItemSize[0]) +( 2 *self.SlotColumnSpace), self.SlotPosition[1] + (3 * self.SlotItemSize[1])), 4)
+        pygame.draw.line(self.screen, [0, 0, 0], (self.SlotPosition[0], self.SlotPosition[1] + (3 * self.SlotItemSize[1])), (self.SlotPosition[0] + (3 * self.SlotItemSize[0]) +( 2 *self.SlotColumnSpace), self.SlotPosition[1]), 4)
     
     def draw_side(self):
         #animation
