@@ -399,19 +399,19 @@ class Game:
                 
     def check(self):
         if self.show[0] == self.show[3] == self.show[6]:
-            pygame.draw.line(self.screen, [246, 226, 0], (self.SlotPosition[0], 111), (423, 111), 8)
+            pygame.draw.line(self.screen, [246, 226, 0], (self.SlotPosition[0], self.SlotPosition[1] + (0.5 * self.SlotItemSize[1])), (self.SlotPosition[0] + (3 * self.SlotItemSize[0]) +( 2 *self.SlotColumnSpace), self.SlotPosition[1] + (0.5 * self.SlotItemSize[1])), 8)
             self.wins[0] = self.show[0]
         if self.show[1] == self.show[4] == self.show[7]:
-            pygame.draw.line(self.screen, [246, 226, 0], (self.SlotPosition[0], 239), (423, 239), 8)
+            pygame.draw.line(self.screen, [246, 226, 0], (self.SlotPosition[0], self.SlotPosition[1] + (1.5 * self.SlotItemSize[1])), (self.SlotPosition[0] + (3 * self.SlotItemSize[0]) +( 2 *self.SlotColumnSpace), self.SlotPosition[1] + (1.5 * self.SlotItemSize[1])), 8)
             self.wins[1] = self.show[1]
         if self.show[2] == self.show[5] == self.show[8]:
-            pygame.draw.line(self.screen, [246, 226, 0], (self.SlotPosition[0], 367), (423, 367), 8)
+            pygame.draw.line(self.screen, [246, 226, 0], (self.SlotPosition[0], self.SlotPosition[1] + (2.5 * self.SlotItemSize[1])), (self.SlotPosition[0] + (3 * self.SlotItemSize[0]) +( 2 *self.SlotColumnSpace), self.SlotPosition[1] + (2.5 * self.SlotItemSize[1])), 8)
             self.wins[2] = self.show[2]
         if self.show[0] == self.show[4] == self.show[8]:
-            pygame.draw.line(self.screen, [246, 226, 0], self.SlotPosition, (422, 433), 8)
+            pygame.draw.line(self.screen, [246, 226, 0], self.SlotPosition, (self.SlotPosition[0] + (3 * self.SlotItemSize[0]) +( 2 *self.SlotColumnSpace), self.SlotPosition[1] + (3 * self.SlotItemSize[1]))), 8)
             self.wins[3] = self.show[0]
         if self.show[2] == self.show[4] == self.show[6]:
-            pygame.draw.line(self.screen, [246, 226, 0], (self.SlotPosition[0], 432), (422, 47), 8)
+            pygame.draw.line(self.screen, [246, 226, 0], (self.SlotPosition[0], self.SlotPosition[1] + (3 * self.SlotItemSize[1])), (self.SlotPosition[0] + (3 * self.SlotItemSize[0]) +( 2 *self.SlotColumnSpace), self.SlotPosition[1]), 8)
             self.wins[4] = self.show[2]
             
     def winner(self):
