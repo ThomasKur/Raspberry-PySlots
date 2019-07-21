@@ -309,7 +309,7 @@ class Game:
             
             self.draw_side()
             # self.screen.blit(self.rlayer, self.SlotPosition)
-            draw_rlayer():
+            draw_rlayer()
             self.screen.blit(self.windowlayer, (0, 0))
             pygame.display.update()
             rollc = rollc - 1
