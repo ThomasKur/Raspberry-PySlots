@@ -68,6 +68,7 @@ class Menu:
                     if self.event.key == pygame.K_LEFT:
                         plc = Game()
                     if self.event.key == pygame.K_ESCAPE:
+                        GPIO.cleanup()
                         exit()
             # 1st layer: background color
             self.screen.fill(self.maincolor)
