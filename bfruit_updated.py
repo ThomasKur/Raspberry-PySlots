@@ -107,7 +107,7 @@ class Game:
         self.rasound = pygame.mixer.Sound("data/sounds/film_projector.wav")
         self.rbsound = pygame.mixer.Sound("data/sounds/film_projector.wav")
         self.rcsound = pygame.mixer.Sound("data/sounds/film_projector.wav")
-        self.bgsound = pygame.mixer.Sound("data/sounds/background001.wav")
+ 
         self.beepsound = pygame.mixer.Sound("data/sounds/beep.wav")
         self.background = pygame.image.load("data/img/bg.png")
         self.rlayer = pygame.image.load("data/img/rlayer.png")
@@ -131,7 +131,6 @@ class Game:
         img.append(self.imgseven)
         img.append(self.imgeight)
         
-        self.bgsound.play(loops=-1)
         self.randi()
         self.drawl()
         # mainloop
@@ -140,7 +139,6 @@ class Game:
             self.screen.blit(self.background, (0, 0))
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    self.bgsound.stop()
                     exit()
                     
                 if event.type == pygame.KEYDOWN:
@@ -160,7 +158,6 @@ class Game:
                             self.RunningLedOff()
                             self.winner()
                         elif self.credit == 0 and self.bet == 0:
-                            self.bgsound.stop()
                             plc = Menu()
                             
                     if self.credit > 0:
@@ -189,7 +186,6 @@ class Game:
                         self.menu = "e"
                       
                     if event.key == pygame.K_ESCAPE and self.keys == 1:
-                        self.bgsound.stop()
                         plc = Menu()
                             
             self.draw_side()
@@ -495,7 +491,6 @@ class Game:
             self.screen.blit(text_surface, (60, 60))
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
-                self.bgsound.stop()
                 self.NewHighscoreLedOff()
                 plc = Menu()
     
