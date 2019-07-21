@@ -90,6 +90,7 @@ class Game:
     def __init__(self):
         self.mut = 0
         self.wins = [0, 0, 0, 0, 0]
+        self.WinPoints = [1, 1, 2, 2, 3,3,4,5]
         self.keys = 1
         self.credit = 20
         self.bet = 1
@@ -423,7 +424,7 @@ class Game:
         ## self.lastwin = 0
         winsum = 0
         for n in self.wins:
-            winsum = winsum + self.bet*int(n)
+            winsum = winsum + self.bet* self.WinPoints[int(n + 1)]
         if winsum > self.bet:
             self.credit = self.credit + winsum
             self.lastwin = self.lastwin + winsum
