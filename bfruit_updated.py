@@ -195,7 +195,7 @@ class Game:
             
             if self.mut == 1:
                 self.drawl()
-                self.check()
+                # self.check()
                 self.wins = [0, 0, 0, 0, 0]
             
             if self.credit == 0 and self.bet == 0:
