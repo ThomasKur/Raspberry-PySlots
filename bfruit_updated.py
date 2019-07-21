@@ -425,7 +425,7 @@ class Game:
         ## self.lastwin = 0
         winsum = 0
         for n in self.wins:
-            winsum = winsum + (self.bet * self.WinPoints[int(n + 1)])
+            winsum = winsum + (self.bet * self.WinPoints[int(n)])
         if winsum == 0:
             self.credit = self.credit + winsum
             self.lastwin = self.lastwin + winsum
