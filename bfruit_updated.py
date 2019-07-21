@@ -149,10 +149,11 @@ class Game:
                                 self.bet = self.credit
                             self.credit = self.credit - self.bet
                             self.randi()
-                            self.check()
                             self.roll(img)
+                            
                             self.screen.blit(self.background, (0, 0))
                             self.drawl()
+                            self.check()
                             self.winner()
                         elif self.credit == 0 and self.bet == 0:
                             self.bgsound.stop()
@@ -311,6 +312,7 @@ class Game:
             self.draw_side()
             # self.screen.blit(self.rlayer, self.SlotPosition)
             self.draw_rlayer()
+            
             self.screen.blit(self.windowlayer, (0, 0))
             pygame.display.update()
             rollc = rollc - 1
