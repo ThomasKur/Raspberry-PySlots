@@ -97,8 +97,8 @@ class Game:
         self.SlotPosition = [150,30]
         self.SlotItemSize = [300,300]
         self.SlotColumnSpace = 10
-        self.StatisticPosition = [300,300]
-        self.StatisitcRowSpace = 100
+        self.StatisticPosition = [1400,300]
+        self.StatisitcRowSpace = 60
         self.CHeckLineWidth = 20
         
         self.screen = screen
@@ -327,30 +327,30 @@ class Game:
 
     def draw_side(self):
         #Bet
-        font = pygame.font.Font("data/LiberationSans-Regular.ttf", 15)
+        font = pygame.font.Font("data/LiberationSans-Regular.ttf", 30)
         text_surface = font.render("Bet:", True, [230, 255, 255])
-        self.screen.blit(text_surface, (1400, 185))
+        self.screen.blit(text_surface, self.StatisticPosition)
         
-        digifont = pygame.font.Font("data/DIGITAL2.ttf",24)
+        digifont = pygame.font.Font("data/DIGITAL2.ttf",40)
         text_surface = digifont.render(str(self.bet), True, [255, 0, 0])
-        self.screen.blit(text_surface, (1400, 210))
+        self.screen.blit(text_surface, (self.StatisticPosition[0], self.StatisticPosition[1] + self.StatisitcRowSpace))
         
         # last win
-        font = pygame.font.Font("data/LiberationSans-Regular.ttf", 15)
+        font = pygame.font.Font("data/LiberationSans-Regular.ttf", 30)
         text_surface = font.render("Winner Paid:", True, [230, 255, 255])
-        self.screen.blit(text_surface, (1400, 255))
+        self.screen.blit(text_surface, (self.StatisticPosition[0], self.StatisticPosition[1] + 3 * self.StatisitcRowSpace))
         
-        digifont = pygame.font.Font("data/DIGITAL2.ttf",24)
+        digifont = pygame.font.Font("data/DIGITAL2.ttf",40)
         text_surface = digifont.render(str(self.lastwin), True, [255, 0, 0])
-        self.screen.blit(text_surface, (1400, 280))
+        self.screen.blit(text_surface, (self.StatisticPosition[0], self.StatisticPosition[1] + 4 * self.StatisitcRowSpace))
         
-        font = pygame.font.Font("data/LiberationSans-Regular.ttf", 15)
+        font = pygame.font.Font("data/LiberationSans-Regular.ttf", 30)
         text_surface = font.render("Credit:", True, [230, 255, 255])
-        self.screen.blit(text_surface, (1400, 325))
+        self.screen.blit(text_surface, (self.StatisticPosition[0], self.StatisticPosition[1] + 6 * self.StatisitcRowSpace))
         # startsum
-        digifont = pygame.font.Font("data/DIGITAL2.ttf",24)
+        digifont = pygame.font.Font("data/DIGITAL2.ttf",40)
         text_surface = digifont.render(str(self.credit), True, [255, 0, 0])
-        self.screen.blit(text_surface, (1400, 350))
+        self.screen.blit(text_surface, (self.StatisticPosition[0], self.StatisticPosition[1] + 7 * self.StatisitcRowSpace))
     
     def drawl(self):        
         self.screen.blit(pygame.image.load("data/img/"+str(self.show[0])+".png"), (self.SlotPosition[0], self.SlotPosition[1]))
@@ -419,14 +419,14 @@ class Game:
             
     def winner(self):
         ## self.lastwin = 0
+        winsum = 0
         for n in self.wins:
-            winsu = self.bet*int(n)
-            winsum = winsu + self.bet
-            if winsum > self.bet:
-                self.credit = self.credit + winsum
-                self.lastwin = self.lastwin + winsum
-                self.beepsound.play()
-                self.WinnerLedOn() ## Set GPIO pin 26 High
+            winsum = winsum + self.bet*int(n)
+        if winsum > self.bet:
+            self.credit = self.credit + winsum
+            self.lastwin = self.lastwin + winsum
+        self.beepsound.play()
+        self.WinnerLedOn() ## Set GPIO pin 26 High
             
     def WinnerLedOn (self):
         GPIO.output(37,True) ## Set GPIO pin 37 High
