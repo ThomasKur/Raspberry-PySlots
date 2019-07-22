@@ -196,17 +196,18 @@ class Game:
                 self.drawl()
                 self.check()
                 self.wins = [0, 0, 0, 0, 0]
-            
+
+            self.draw_rlayer()
+            self.screen.blit(self.windowlayer, (0, 0))
+
             if self.credit == 0 and self.bet == 0:
-                font = pygame.font.Font("data/BRISTRT0.TTF", 100)
+                font = pygame.font.Font("data/BRISTRT0.TTF", 200)
                 text_surface = font.render("Game Over", True, [255, 0, 0])
                 textpos = text_surface.get_rect()
                 textpos.center = self.background.get_rect().center
                 self.screen.blit(text_surface, textpos)
+                self.endthegame(scr)
                 
-            
-            self.draw_rlayer()
-            self.screen.blit(self.windowlayer, (0, 0))
             
             if self.keys == 0 and self.menu == "h":
                 self.helpmenu()
