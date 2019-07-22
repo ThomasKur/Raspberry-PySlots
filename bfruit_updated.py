@@ -90,7 +90,7 @@ class Game:
     def __init__(self):
         self.mut = 0
         self.wins = [0, 0, 0, 0, 0]
-        self.WinPoints = [1, 1, 2, 2, 3,3,4,5]
+        self.WinPoints = [0, 1, 1, 2, 2,3,4,5]
         self.keys = 1
         self.credit = 20
         self.bet = 1
@@ -278,39 +278,39 @@ class Game:
             self.screen.blit(self.background, (0, 0))
             
             if szama > 2:
-                self.screen.blit(rollaf[len(rollaf)-3], (self.SlotPosition[0], self.SlotPosition[1]))
-                self.screen.blit(rollaf[len(rollaf)-2], (self.SlotPosition[0], self.SlotPosition[1] + self.SlotItemSize[1]))
-                self.screen.blit(rollaf[len(rollaf)-1], (self.SlotPosition[0], self.SlotPosition[1] + (2*self.SlotItemSize[1])))
+                self.screen.blit(rollaf[len(rollaf)-3], (self.SlotPosition[0]+ self.SlotColumnSpace, self.SlotPosition[1]))
+                self.screen.blit(rollaf[len(rollaf)-2], (self.SlotPosition[0]+ self.SlotColumnSpace, self.SlotPosition[1] + self.SlotItemSize[1]))
+                self.screen.blit(rollaf[len(rollaf)-1], (self.SlotPosition[0]+ self.SlotColumnSpace, self.SlotPosition[1] + (2*self.SlotItemSize[1])))
                 szama = szama - 1
                 del(rollaf[len(rollaf)-1])
             else:
-                self.screen.blit(rollaf[len(rollaf)-3], (self.SlotPosition[0], self.SlotPosition[1]))
-                self.screen.blit(rollaf[len(rollaf)-2], (self.SlotPosition[0], self.SlotPosition[1] + self.SlotItemSize[1]))
-                self.screen.blit(rollaf[len(rollaf)-1], (self.SlotPosition[0], self.SlotPosition[1] + (2*self.SlotItemSize[1])))
+                self.screen.blit(rollaf[len(rollaf)-3], (self.SlotPosition[0]+ self.SlotColumnSpace, self.SlotPosition[1]))
+                self.screen.blit(rollaf[len(rollaf)-2], (self.SlotPosition[0]+ self.SlotColumnSpace, self.SlotPosition[1] + self.SlotItemSize[1]))
+                self.screen.blit(rollaf[len(rollaf)-1], (self.SlotPosition[0]+ self.SlotColumnSpace, self.SlotPosition[1] + (2*self.SlotItemSize[1])))
                 self.rasound.stop()
                 
             if szamb > 2:
-                self.screen.blit(rollbf[len(rollbf)-3], (self.SlotPosition[0] + self.SlotItemSize[0] + self.SlotColumnSpace, self.SlotPosition[1]))
-                self.screen.blit(rollbf[len(rollbf)-2], (self.SlotPosition[0] + self.SlotItemSize[0] + self.SlotColumnSpace, self.SlotPosition[1] + self.SlotItemSize[1]))
-                self.screen.blit(rollbf[len(rollbf)-1], (self.SlotPosition[0] + self.SlotItemSize[0] + self.SlotColumnSpace, self.SlotPosition[1] + (2*self.SlotItemSize[1])))
+                self.screen.blit(rollbf[len(rollbf)-3], (self.SlotPosition[0] + self.SlotItemSize[0] + 2 * self.SlotColumnSpace, self.SlotPosition[1]))
+                self.screen.blit(rollbf[len(rollbf)-2], (self.SlotPosition[0] + self.SlotItemSize[0] + 2 * self.SlotColumnSpace, self.SlotPosition[1] + self.SlotItemSize[1]))
+                self.screen.blit(rollbf[len(rollbf)-1], (self.SlotPosition[0] + self.SlotItemSize[0] + 2 * self.SlotColumnSpace, self.SlotPosition[1] + (2*self.SlotItemSize[1])))
                 szamb = szamb - 1
                 del(rollbf[len(rollbf)-1])
             else:
-                self.screen.blit(rollbf[len(rollbf)-3], (self.SlotPosition[0] + self.SlotItemSize[0] + self.SlotColumnSpace, self.SlotPosition[1]))
-                self.screen.blit(rollbf[len(rollbf)-2], (self.SlotPosition[0] + self.SlotItemSize[0] + self.SlotColumnSpace, self.SlotPosition[1] + self.SlotItemSize[1]))
-                self.screen.blit(rollbf[len(rollbf)-1], (self.SlotPosition[0] + self.SlotItemSize[0] + self.SlotColumnSpace, self.SlotPosition[1] + (2*self.SlotItemSize[1])))
+                self.screen.blit(rollbf[len(rollbf)-3], (self.SlotPosition[0] + self.SlotItemSize[0] + 2 * self.SlotColumnSpace, self.SlotPosition[1]))
+                self.screen.blit(rollbf[len(rollbf)-2], (self.SlotPosition[0] + self.SlotItemSize[0] + 2 * self.SlotColumnSpace, self.SlotPosition[1] + self.SlotItemSize[1]))
+                self.screen.blit(rollbf[len(rollbf)-1], (self.SlotPosition[0] + self.SlotItemSize[0] + 2 * self.SlotColumnSpace, self.SlotPosition[1] + (2*self.SlotItemSize[1])))
                 self.rbsound.stop()
                 
             if szamc > 2:
-                self.screen.blit(rollcf[len(rollcf)-3], (self.SlotPosition[0] + (2 *( self.SlotItemSize[0] + self.SlotColumnSpace)), self.SlotPosition[1]))
-                self.screen.blit(rollcf[len(rollcf)-2], (self.SlotPosition[0] + (2 *( self.SlotItemSize[0] + self.SlotColumnSpace)), self.SlotPosition[1] + self.SlotItemSize[1]))
-                self.screen.blit(rollcf[len(rollcf)-1], (self.SlotPosition[0] + (2 *( self.SlotItemSize[0] + self.SlotColumnSpace)), self.SlotPosition[1] + (2*self.SlotItemSize[1])))
+                self.screen.blit(rollcf[len(rollcf)-3], (self.SlotPosition[0] + 2 * self.SlotItemSize[0] + 3 * self.SlotColumnSpace, self.SlotPosition[1]))
+                self.screen.blit(rollcf[len(rollcf)-2], (self.SlotPosition[0] + 2 * self.SlotItemSize[0] + 3 * self.SlotColumnSpace, self.SlotPosition[1] + self.SlotItemSize[1]))
+                self.screen.blit(rollcf[len(rollcf)-1], (self.SlotPosition[0] + 2 * self.SlotItemSize[0] + 3 * self.SlotColumnSpace, self.SlotPosition[1] + (2*self.SlotItemSize[1])))
                 szamc = szamc - 1
                 del(rollcf[len(rollcf)-1])
             else:
-                self.screen.blit(rollcf[len(rollcf)-3], (self.SlotPosition[0] + (2 *( self.SlotItemSize[0] + self.SlotColumnSpace)), self.SlotPosition[1]))
-                self.screen.blit(rollcf[len(rollcf)-2], (self.SlotPosition[0] + (2 *( self.SlotItemSize[0] + self.SlotColumnSpace)), self.SlotPosition[1] + self.SlotItemSize[1]))
-                self.screen.blit(rollcf[len(rollcf)-1], (self.SlotPosition[0] + (2 *( self.SlotItemSize[0] + self.SlotColumnSpace)), self.SlotPosition[1] + (2*self.SlotItemSize[1])))
+                self.screen.blit(rollcf[len(rollcf)-3], (self.SlotPosition[0] + 2 * self.SlotItemSize[0] + 3 * self.SlotColumnSpace, self.SlotPosition[1]))
+                self.screen.blit(rollcf[len(rollcf)-2], (self.SlotPosition[0] + 2 * self.SlotItemSize[0] + 3 * self.SlotColumnSpace, self.SlotPosition[1] + self.SlotItemSize[1]))
+                self.screen.blit(rollcf[len(rollcf)-1], (self.SlotPosition[0] + 2 * self.SlotItemSize[0] + 3 * self.SlotColumnSpace, self.SlotPosition[1] + (2*self.SlotItemSize[1])))
             
             self.draw_side()
             # self.screen.blit(self.rlayer, self.SlotPosition)
@@ -356,15 +356,15 @@ class Game:
         self.screen.blit(text_surface, (self.StatisticPosition[0], self.StatisticPosition[1] + 7 * self.StatisitcRowSpace))
     
     def drawl(self):        
-        self.screen.blit(pygame.image.load("data/img/"+str(self.show[0])+".png"), (self.SlotPosition[0], self.SlotPosition[1]))
-        self.screen.blit(pygame.image.load("data/img/"+str(self.show[1])+".png"), (self.SlotPosition[0], self.SlotPosition[1] + self.SlotItemSize[1]))
-        self.screen.blit(pygame.image.load("data/img/"+str(self.show[2])+".png"), (self.SlotPosition[0], self.SlotPosition[1] + (2*self.SlotItemSize[1])))
-        self.screen.blit(pygame.image.load("data/img/"+str(self.show[3])+".png"), (self.SlotPosition[0] + self.SlotItemSize[0] + self.SlotColumnSpace, self.SlotPosition[1]))
-        self.screen.blit(pygame.image.load("data/img/"+str(self.show[4])+".png"), (self.SlotPosition[0] + self.SlotItemSize[0] + self.SlotColumnSpace, self.SlotPosition[1] + self.SlotItemSize[1]))
-        self.screen.blit(pygame.image.load("data/img/"+str(self.show[5])+".png"), (self.SlotPosition[0] + self.SlotItemSize[0] + self.SlotColumnSpace, self.SlotPosition[1] + (2*self.SlotItemSize[1])))
-        self.screen.blit(pygame.image.load("data/img/"+str(self.show[6])+".png"), (self.SlotPosition[0] + (2 *( self.SlotItemSize[0] + self.SlotColumnSpace)), self.SlotPosition[1]))
-        self.screen.blit(pygame.image.load("data/img/"+str(self.show[7])+".png"), (self.SlotPosition[0] + (2 *( self.SlotItemSize[0] + self.SlotColumnSpace)), self.SlotPosition[1] + self.SlotItemSize[1]))
-        self.screen.blit(pygame.image.load("data/img/"+str(self.show[8])+".png"), (self.SlotPosition[0] + (2 *( self.SlotItemSize[0] + self.SlotColumnSpace)), self.SlotPosition[1] + (2*self.SlotItemSize[1])))
+        self.screen.blit(pygame.image.load("data/img/"+str(self.show[0])+".png"), (self.SlotPosition[0] + self.SlotColumnSpace, self.SlotPosition[1]))
+        self.screen.blit(pygame.image.load("data/img/"+str(self.show[1])+".png"), (self.SlotPosition[0] + self.SlotColumnSpace, self.SlotPosition[1] + self.SlotItemSize[1]))
+        self.screen.blit(pygame.image.load("data/img/"+str(self.show[2])+".png"), (self.SlotPosition[0] + self.SlotColumnSpace, self.SlotPosition[1] + (2*self.SlotItemSize[1])))
+        self.screen.blit(pygame.image.load("data/img/"+str(self.show[3])+".png"), (self.SlotPosition[0] + self.SlotItemSize[0] + 2* self.SlotColumnSpace, self.SlotPosition[1]))
+        self.screen.blit(pygame.image.load("data/img/"+str(self.show[4])+".png"), (self.SlotPosition[0] + self.SlotItemSize[0] + 2* self.SlotColumnSpace, self.SlotPosition[1] + self.SlotItemSize[1]))
+        self.screen.blit(pygame.image.load("data/img/"+str(self.show[5])+".png"), (self.SlotPosition[0] + self.SlotItemSize[0] + 2* self.SlotColumnSpace, self.SlotPosition[1] + (2*self.SlotItemSize[1])))
+        self.screen.blit(pygame.image.load("data/img/"+str(self.show[6])+".png"), (self.SlotPosition[0] + 2 * self.SlotItemSize[0] + 3 * self.SlotColumnSpace, self.SlotPosition[1]))
+        self.screen.blit(pygame.image.load("data/img/"+str(self.show[7])+".png"), (self.SlotPosition[0] + 2 * self.SlotItemSize[0] + 3 * self.SlotColumnSpace, self.SlotPosition[1] + self.SlotItemSize[1]))
+        self.screen.blit(pygame.image.load("data/img/"+str(self.show[8])+".png"), (self.SlotPosition[0] + 2 * self.SlotItemSize[0] + 3 * self.SlotColumnSpace, self.SlotPosition[1] + (2*self.SlotItemSize[1])))
 
     # random images
     def randi(self):
@@ -423,9 +423,13 @@ class Game:
             
     def winner(self):
         winsum = 0
+        print(winsum)
         for n in self.wins:
             winsum = winsum + (self.bet * self.WinPoints[int(n)])
+            print("n="+n)
+            print(self.WinPoints[int(n)])
         if winsum > 0:
+            print(winsum)
             self.credit = self.credit + winsum
             self.lastwin = self.lastwin + winsum
             self.beepsound.play()
