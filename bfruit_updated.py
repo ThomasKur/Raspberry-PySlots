@@ -96,10 +96,10 @@ class Game:
         self.bet = 1
         self.lastwin = 0
         self.show = []
-        self.SlotPosition = [200,40]
+        self.SlotPosition = [250,40]
         self.SlotItemSize = [330,330]
         self.SlotColumnSpace = 10
-        self.StatisticPosition = [1400,300]
+        self.StatisticPosition = [1450,300]
         self.StatisitcRowSpace = 60
         self.StatisitcFontSize = 50
         self.CHeckLineWidth = 20
