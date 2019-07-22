@@ -96,8 +96,8 @@ class Game:
         self.bet = 1
         self.lastwin = 0
         self.show = []
-        self.SlotPosition = [150,30]
-        self.SlotItemSize = [300,300]
+        self.SlotPosition = [200,40]
+        self.SlotItemSize = [330,330]
         self.SlotColumnSpace = 10
         self.StatisticPosition = [1400,300]
         self.StatisitcRowSpace = 60
@@ -422,7 +422,6 @@ class Game:
             self.wins[4] = self.show[2]
             
     def winner(self):
-        ## self.lastwin = 0
         winsum = 0
         for n in self.wins:
             winsum = winsum + (self.bet * self.WinPoints[int(n)])
@@ -505,11 +504,11 @@ class Game:
         
 
 def help():
-    print "BFruit help:"
-    print "Options:"
-    print "-h, --help        display this help message"
-    print "-v, --version     display game version"
-    print "Contact: nxbalazs@gmail.com"
+    print("BFruit help:")
+    print("Options:")
+    print("-h, --help        display this help message")
+    print("-v, --version     display game version")
+    print("Contact: nxbalazs@gmail.com")
 
 if __name__ == "__main__":
     try:
@@ -523,7 +522,7 @@ if __name__ == "__main__":
             help()
             exit()
         if opt in ("-v", "--version"):
-            print "BFruit - version: "+ VERSION
+            print("BFruit - version: "+ VERSION)
             exit()
             
 
