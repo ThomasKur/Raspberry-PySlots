@@ -113,7 +113,6 @@ class Game:
  
         self.beepsound = pygame.mixer.Sound("data/sounds/beep.wav")
         self.background = pygame.image.load("data/img/bg.png")
-        self.rlayer = pygame.image.load("data/img/rlayer.png")
         self.windowlayer = pygame.image.load("data/img/windowlayer.png")
         self.imgone = pygame.image.load("data/img/1.png")
         self.imgtwo = pygame.image.load("data/img/2.png")
@@ -199,13 +198,13 @@ class Game:
                 self.wins = [0, 0, 0, 0, 0]
             
             if self.credit == 0 and self.bet == 0:
-                font = pygame.font.Font("data/LiberationSans-Regular.ttf", 55)
+                font = pygame.font.Font("data/BRISTRT0.TTF", 100)
                 text_surface = font.render("Game Over", True, [255, 0, 0])
                 textpos = text_surface.get_rect()
                 textpos.center = self.background.get_rect().center
                 self.screen.blit(text_surface, textpos)
                 
-            # self.screen.blit(self.rlayer, self.SlotPosition)
+            
             self.draw_rlayer()
             self.screen.blit(self.windowlayer, (0, 0))
             
@@ -313,7 +312,7 @@ class Game:
                 self.screen.blit(rollcf[len(rollcf)-1], (self.SlotPosition[0] + 2 * self.SlotItemSize[0] + 4 * self.SlotColumnSpace, self.SlotPosition[1] + (2*self.SlotItemSize[1])))
             
             self.draw_side()
-            # self.screen.blit(self.rlayer, self.SlotPosition)
+            
             self.draw_rlayer()
             
             self.screen.blit(self.windowlayer, (0, 0))
