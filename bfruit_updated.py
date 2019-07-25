@@ -48,12 +48,6 @@ class Menu:
         
         self.backgroundadded = pygame.image.load("data/menubg/added.png")
         
-        self.menu = []
-        self.menubg = []
-
-        self.menuall = ""
-        self.selectedmenu = 0
-        self.mid = []
         GPIO.output(37,False) 
         GPIO.output(38,True)
         GPIO.output(40,True)
@@ -83,6 +77,79 @@ class Menu:
             self.screen.blit(text_surface, (100, 800))
 
             pygame.display.update()
+
+# main menu###########################
+class EndGame:
+    def __init__(self, scr,credits):
+        self.screen = screen
+        self.maincolor = [0, 0, 0]
+        self.white = [255, 255, 255]
+        self.red = [255, 0, 0]
+        self.bsound = pygame.mixer.Sound("data/sounds/CLICK10A.WAV")
+        self.CentralScreen = [960,540]
+        GPIO.output(37,True) 
+        GPIO.output(38,True)
+        GPIO.output(40,True)
+        
+        
+        # 1st layer: background color
+        self.screen.fill(self.maincolor)
+        
+        # 3rd layer: transparent image
+        
+        scrb = int(scr)
+        creditsb = int(credits)
+        pygame.draw.line(self.screen, [176, 176, 176], (50, 250), (590, 250), 400)
+        if creditsb > scrb:
+            font = pygame.font.Font("data/BRISTRT0.TTF", 150)
+            text_surface = font.render("You have a new high score!!!", True, [255, 0, 0])
+            self.screen.blit(text_surface, self.CentralScreen)
+
+            text_surface = font.render("Old high score: "+scr, True, [255, 255, 255])
+            textpos = self.CentralScreen
+            textpos[0] = textpos[0] + 200
+            self.screen.blit(text_surface, textpos)
+
+            text_surface = font.render("New high score: "+str(credits), True, [255, 255, 255])
+            textpos = self.CentralScreen
+            textpos[0] = textpos[0] + 300
+            self.screen.blit(text_surface, textpos)
+            self.NewHighscoreLedOn()
+            self.writehs(myhsfile)
+        else:
+            font = pygame.font.Font("data/BRISTRT0.TTF", 150)
+            text_surface = font.render("Game Over", True, [255, 0, 0])
+
+            self.screen.blit(text_surface, self.CentralScreen)
+
+            font = pygame.font.Font("data/BRISTRT0.TTF", 80)
+            text_surface = font.render("You ended the game, but you don't have a new high score...press ok to continue", True, [255, 0, 0])
+            textpos = self.CentralScreen
+            textpos[0] = textpos[0] + 200
+            self.screen.blit(text_surface, textpos)
+        
+        pygame.display.update()
+
+        # mainloop
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                self.NewHighscoreLedOff()
+                plc = Menu()
+
+    def writehs(self, myhsfile):
+        writef = open(myhsfile, "w")
+        writef.write(str(self.credit))
+        writef.close()
+
+    def NewHighscoreLedOn (self):
+        GPIO.output(37,False) 
+        GPIO.output(38,False)
+        GPIO.output(40,False)
+
+    def NewHighscoreLedOff (self):
+        GPIO.output(37,True) ## Set on GPIO pin 37 Low
+        GPIO.output(38,True)
+        GPIO.output(40,True)       
 
 # the game###########################
 class Game:
@@ -200,11 +267,7 @@ class Game:
             self.screen.blit(self.windowlayer, (0, 0))
 
             if self.credit == 0 and self.bet == 0:
-                font = pygame.font.Font("data/BRISTRT0.TTF", 200)
-                text_surface = font.render("Game Over", True, [255, 0, 0])
-                textpos = text_surface.get_rect()
-                textpos.center = self.background.get_rect().center
-                self.screen.blit(text_surface, textpos)
+                
                 self.endthegame(scr)
                 
             
@@ -455,15 +518,7 @@ class Game:
         GPIO.output(38,True)
         GPIO.output(40,True)
     
-    def NewHighscoreLedOn (self):
-        GPIO.output(37,False) 
-        GPIO.output(38,False)
-        GPIO.output(40,False)
-
-    def NewHighscoreLedOff (self):
-        GPIO.output(37,True) ## Set on GPIO pin 37 Low
-        GPIO.output(38,True)
-        GPIO.output(40,True)
+    
 
     def helpmenu(self):
         pygame.draw.line(self.screen, [176, 176, 176], (50, 250), (590, 250), 400)
@@ -480,31 +535,9 @@ class Game:
         self.screen.blit(text_surface, (60, 160))
         
     def endthegame(self, scr):
-        scrb = int(scr)
-        pygame.draw.line(self.screen, [176, 176, 176], (50, 250), (590, 250), 400)
-        if self.credit > scrb:
-            font = pygame.font.Font("data/LiberationSans-Regular.ttf", 15)
-            text_surface = font.render("You have a new high score!!!", True, [255, 255, 255])
-            self.screen.blit(text_surface, (60, 60))
-            text_surface = font.render("Old high score: "+scr, True, [255, 255, 255])
-            self.screen.blit(text_surface, (60, 80))
-            text_surface = font.render("New high score: "+str(self.credit), True, [255, 255, 255])
-            self.screen.blit(text_surface, (60, 100))
-            self.NewHighscoreLedOn()
-            self.writehs(myhsfile)
-        else:
-            font = pygame.font.Font("data/LiberationSans-Regular.ttf", 15)
-            text_surface = font.render("You ended the game, but you don't have a new high score...", True, [255, 255, 255])
-            self.screen.blit(text_surface, (60, 60))
-        for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN:
-                self.NewHighscoreLedOff()
-                plc = Menu()
+        plc = EndGame(scr,self.credits)
     
-    def writehs(self, myhsfile):
-        writef = open(myhsfile, "w")
-        writef.write(str(self.credit))
-        writef.close()
+    
         
 
 def help():
