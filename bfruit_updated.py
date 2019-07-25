@@ -54,11 +54,10 @@ class Menu:
         self.menuall = ""
         self.selectedmenu = 0
         self.mid = []
-
+        GPIO.output(37,False) 
+        GPIO.output(38,True)
+        GPIO.output(40,True)
         # mainloop
-        sz = 0
-
-        
         while True:
             for self.event in pygame.event.get():
                 if self.event.type == pygame.QUIT:
@@ -90,7 +89,7 @@ class Game:
     def __init__(self):
         self.mut = 0
         self.wins = [0, 0, 0, 0, 0]
-        self.WinPoints = [0, 1, 1, 2, 2,3,4,5]
+        self.WinPoints = [0, 1, 1, 2, 2,3,3,4,5]
         self.keys = 1
         self.credit = 20
         self.bet = 1
@@ -132,7 +131,7 @@ class Game:
         img.append(self.imgsix)
         img.append(self.imgseven)
         img.append(self.imgeight)
-        
+        self.RunningLedOff()
         self.randi()
         self.drawl()
         # mainloop
@@ -437,34 +436,34 @@ class Game:
             self.WinnerLedOn() ## Set GPIO pin 26 High
             
     def WinnerLedOn (self):
-        GPIO.output(37,True) ## Set GPIO pin 37 High
-        GPIO.output(38,True)
-        GPIO.output(40,False)
+        GPIO.output(37,False) 
+        GPIO.output(38,False)
+        GPIO.output(40,True)
 
     def WinnerLedOff (self):
-        GPIO.output(37,False) ## Set on GPIO pin 37 Low
-        GPIO.output(38,False)
-        GPIO.output(40,False)
-
-    def RunningLedOn (self):
-        GPIO.output(37,True) ## Set GPIO pin 37 High
-        GPIO.output(38,False)
-        GPIO.output(40,False)
-
-    def RunningLedOff (self):
-        GPIO.output(37,False) ## Set on GPIO pin 37 Low
-        GPIO.output(38,False)
-        GPIO.output(40,False)
-    
-    def NewHighscoreLedOn (self):
-        GPIO.output(37,True) ## Set GPIO pin 37 High
+        GPIO.output(37,True) ## Set on GPIO pin 37 Low
         GPIO.output(38,True)
         GPIO.output(40,True)
 
-    def NewHighscoreLedOff (self):
-        GPIO.output(37,False) ## Set on GPIO pin 37 Low
+    def RunningLedOn (self):
+        GPIO.output(37,False) 
+        GPIO.output(38,True)
+        GPIO.output(40,True)
+
+    def RunningLedOff (self):
+        GPIO.output(37,True) ## Set on GPIO pin 37 Low
+        GPIO.output(38,True)
+        GPIO.output(40,True)
+    
+    def NewHighscoreLedOn (self):
+        GPIO.output(37,False) 
         GPIO.output(38,False)
         GPIO.output(40,False)
+
+    def NewHighscoreLedOff (self):
+        GPIO.output(37,True) ## Set on GPIO pin 37 Low
+        GPIO.output(38,True)
+        GPIO.output(40,True)
 
     def helpmenu(self):
         pygame.draw.line(self.screen, [176, 176, 176], (50, 250), (590, 250), 400)
