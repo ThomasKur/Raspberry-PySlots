@@ -19,6 +19,7 @@
 # Project web site: http://bfruit.sf.net
 
 import pygame
+import pygame.camera
 from pygame.locals import *
 from random import randrange
 import sys
@@ -79,6 +80,7 @@ class Menu:
             pygame.display.update()
 
 # main menu###########################
+
 class EndGame:
     def __init__(self, scr,credits):
         self.screen = screen
@@ -86,7 +88,9 @@ class EndGame:
         self.white = [255, 255, 255]
         self.red = [255, 0, 0]
         self.bsound = pygame.mixer.Sound("data/sounds/CLICK10A.WAV")
-        self.CentralScreen = [960,540]
+        self.winsound = pygame.mixer.Sound("data/sounds/Win.WAV")
+        self.gameoversound = pygame.mixer.Sound("data/sounds/GameOver.WAV")
+        self.CentralScreen = [460,340]
         GPIO.output(37,True) 
         GPIO.output(38,True)
         GPIO.output(40,True)
@@ -99,23 +103,36 @@ class EndGame:
         
         scrb = int(scr)
         creditsb = int(credits)
-        pygame.draw.line(self.screen, [176, 176, 176], (50, 250), (590, 250), 400)
         if creditsb > scrb:
+            self.winsound.play()
             font = pygame.font.Font("data/BRISTRT0.TTF", 150)
             text_surface = font.render("You have a new high score!!!", True, [255, 0, 0])
             self.screen.blit(text_surface, self.CentralScreen)
 
             text_surface = font.render("Old high score: "+scr, True, [255, 255, 255])
             textpos = self.CentralScreen
-            textpos[0] = textpos[0] + 200
+            textpos[1] = textpos[1] + 200
             self.screen.blit(text_surface, textpos)
 
             text_surface = font.render("New high score: "+str(credits), True, [255, 255, 255])
             textpos = self.CentralScreen
-            textpos[0] = textpos[0] + 300
+            textpos[1] = textpos[1] + 300
             self.screen.blit(text_surface, textpos)
             self.NewHighscoreLedOn()
             self.writehs(myhsfile)
+        elif creditsb == 0:
+            self.gameoversound.play()
+            font = pygame.font.Font("data/BRISTRT0.TTF", 150)
+            text_surface = font.render("Looser", True, [255, 0, 0])
+
+            self.screen.blit(text_surface, self.CentralScreen)
+
+            font = pygame.font.Font("data/BRISTRT0.TTF", 80)
+            text_surface = font.render("You ended the game with 0 points...press ok to continue", True, [255, 0, 0])
+            textpos = self.CentralScreen
+            textpos[1] = textpos[1] + 200
+            self.screen.blit(text_surface, textpos)
+            
         else:
             font = pygame.font.Font("data/BRISTRT0.TTF", 150)
             text_surface = font.render("Game Over", True, [255, 0, 0])
@@ -125,7 +142,17 @@ class EndGame:
             font = pygame.font.Font("data/BRISTRT0.TTF", 80)
             text_surface = font.render("You ended the game, but you don't have a new high score...press ok to continue", True, [255, 0, 0])
             textpos = self.CentralScreen
-            textpos[0] = textpos[0] + 200
+            textpos[1] = textpos[1] + 200
+            self.screen.blit(text_surface, textpos)
+
+            text_surface = font.render("High score: "+scr, True, [255, 255, 255])
+            textpos = self.CentralScreen
+            textpos[1] = textpos[1] + 300
+            self.screen.blit(text_surface, textpos)
+
+            text_surface = font.render("Your score: "+str(credits), True, [255, 255, 255])
+            textpos = self.CentralScreen
+            textpos[1] = textpos[1] + 400
             self.screen.blit(text_surface, textpos)
         
         pygame.display.update()
@@ -403,7 +430,7 @@ class Game:
         
         # last win
         font = pygame.font.Font("data/LiberationSans-Regular.ttf", 30)
-        text_surface = font.render("Winner Paid:", True, [230, 255, 255])
+        text_surface = font.render("Winner Points:", True, [230, 255, 255])
         self.screen.blit(text_surface, (self.StatisticPosition[0], self.StatisticPosition[1] + 3 * self.StatisitcRowSpace))
         
         digifont = pygame.font.Font("data/DIGITAL2.ttf",self.StatisitcFontSize)
