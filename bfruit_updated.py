@@ -72,10 +72,10 @@ class Menu:
            
             font = pygame.font.Font("data/BRISTRT0.TTF", 100)
             text_surface = font.render("Start Game" , True, self.red)
-            self.screen.blit(text_surface, (100, 600))
+            self.screen.blit(text_surface, (300, 600))
             font=pygame.font.Font("data/LiberationSans-Regular.ttf", 25)
             text_surface = font.render("Current Highscore: "+scr, True, self.white)
-            self.screen.blit(text_surface, (100, 800))
+            self.screen.blit(text_surface, (300, 800))
 
             pygame.display.update()
 
