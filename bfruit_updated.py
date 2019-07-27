@@ -47,7 +47,7 @@ class Menu:
         self.red = [255, 0, 0]
         self.bsound = pygame.mixer.Sound("data/sounds/CLICK10A.WAV")
         
-        self.backgroundadded = pygame.image.load("data/menubg/added.png")
+        self.backgroundadded = pygame.image.load("data/menubg/backgroundMenu.png")
         
         GPIO.output(37,False) 
         GPIO.output(38,True)
