@@ -124,7 +124,8 @@ class EndGame:
             textpos[1] = textpos[1] + 260
             self.screen.blit(text_surface, textpos)
             self.NewHighscoreLedOn()
-            self.writehs(myhsfile)
+            self.writehs(myhsfile,newscore)
+            scr = newscore
         elif self.creditsb == 0:
             self.gameoversound.play(0)
             font = pygame.font.Font("data/BRISTRT0.TTF", 130)
@@ -179,9 +180,9 @@ class EndGame:
                     self.NewHighscoreLedOff()
                     plc = Menu()
 
-    def writehs(self, myhsfile):
+    def writehs(self, myhsfile,newscore):
         writef = open(myhsfile, "w")
-        writef.write(str(self.creditsb))
+        writef.write(str(newscore))
         writef.close()
 
     def NewHighscoreLedOn (self):
