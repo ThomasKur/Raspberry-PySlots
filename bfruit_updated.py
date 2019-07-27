@@ -151,24 +151,24 @@ class EndGame:
             self.screen.blit(text_surface, self.CentralScreen)
 
             font = pygame.font.Font("data/BRISTRT0.TTF", 50)
-            text_surface = font.render("No new high score...press start to continue.", True, [255, 0, 0])
+            text_surface = font.render("No new high score...", True, [255, 0, 0])
             textpos = self.CentralScreen
             textpos[1] = textpos[1] + 200
             self.screen.blit(text_surface, textpos)
 
             text_surface = font.render("Press start to continue.", True, [255, 0, 0])
             textpos = self.CentralScreen
-            textpos[1] = textpos[1] + 260
+            textpos[1] = textpos[1] + 220
             self.screen.blit(text_surface, textpos)
 
             text_surface = font.render("High score: "+str(scr), True, [255, 255, 255])
             textpos = self.CentralScreen
-            textpos[1] = textpos[1] + 340
+            textpos[1] = textpos[1] + 240
             self.screen.blit(text_surface, textpos)
 
             text_surface = font.render("Your score: "+str(newscore), True, [255, 255, 255])
             textpos = self.CentralScreen
-            textpos[1] = textpos[1] + 400
+            textpos[1] = textpos[1] + 260
             self.screen.blit(text_surface, textpos)
         
         pygame.display.update()
