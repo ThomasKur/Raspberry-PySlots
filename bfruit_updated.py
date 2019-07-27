@@ -88,8 +88,8 @@ class EndGame:
         self.white = [255, 255, 255]
         self.red = [255, 0, 0]
         self.bsound = pygame.mixer.Sound("data/sounds/CLICK10A.WAV")
-        self.winsound = pygame.mixer.Sound("data/sounds/Win.WAV")
-        self.gameoversound = pygame.mixer.Sound("data/sounds/GameOver.WAV")
+        self.winsound = pygame.mixer.Sound("data/sounds/film_projector.wav")
+        self.gameoversound = pygame.mixer.Sound("data/sounds/film_projector.wav")
         self.CentralScreen = [460,340]
         GPIO.output(37,True) 
         GPIO.output(38,True)
@@ -106,9 +106,10 @@ class EndGame:
         if self.creditsb > scrb:
             self.winsound.play()
             font = pygame.font.Font("data/BRISTRT0.TTF", 130)
-            text_surface = font.render("You have a new high score!!! Press start to continue.", True, [255, 0, 0])
+            text_surface = font.render("You have a new high score!!!", True, [255, 0, 0])
             self.screen.blit(text_surface, self.CentralScreen)
 
+            font = pygame.font.Font("data/BRISTRT0.TTF", 50)
             text_surface = font.render("Old high score: "+scr, True, [255, 255, 255])
             textpos = self.CentralScreen
             textpos[1] = textpos[1] + 200
@@ -116,7 +117,7 @@ class EndGame:
 
             text_surface = font.render("New high score: "+str(credits), True, [255, 255, 255])
             textpos = self.CentralScreen
-            textpos[1] = textpos[1] + 300
+            textpos[1] = textpos[1] + 260
             self.screen.blit(text_surface, textpos)
             self.NewHighscoreLedOn()
             self.writehs(myhsfile)
@@ -127,10 +128,15 @@ class EndGame:
 
             self.screen.blit(text_surface, self.CentralScreen)
 
-            font = pygame.font.Font("data/BRISTRT0.TTF", 60)
-            text_surface = font.render("You ended the game with 0 points...press start to continue.", True, [255, 0, 0])
+            font = pygame.font.Font("data/BRISTRT0.TTF", 50)
+            text_surface = font.render("You ended the game with 0 points...", True, [255, 0, 0])
             textpos = self.CentralScreen
             textpos[1] = textpos[1] + 200
+            self.screen.blit(text_surface, textpos)
+            font = pygame.font.Font("data/BRISTRT0.TTF", 50)
+            text_surface = font.render("Press start to continue.", True, [255, 0, 0])
+            textpos = self.CentralScreen
+            textpos[1] = textpos[1] + 260
             self.screen.blit(text_surface, textpos)
             
         else:
@@ -139,15 +145,20 @@ class EndGame:
 
             self.screen.blit(text_surface, self.CentralScreen)
 
-            font = pygame.font.Font("data/BRISTRT0.TTF", 60)
-            text_surface = font.render("You ended the game, but you don't have a new high score...press start to continue.", True, [255, 0, 0])
+            font = pygame.font.Font("data/BRISTRT0.TTF", 50)
+            text_surface = font.render("No new high score...press start to continue.", True, [255, 0, 0])
             textpos = self.CentralScreen
             textpos[1] = textpos[1] + 200
             self.screen.blit(text_surface, textpos)
 
+            text_surface = font.render("Press start to continue.", True, [255, 0, 0])
+            textpos = self.CentralScreen
+            textpos[1] = textpos[1] + 260
+            self.screen.blit(text_surface, textpos)
+
             text_surface = font.render("High score: "+scr, True, [255, 255, 255])
             textpos = self.CentralScreen
-            textpos[1] = textpos[1] + 300
+            textpos[1] = textpos[1] + 340
             self.screen.blit(text_surface, textpos)
 
             text_surface = font.render("Your score: "+str(credits), True, [255, 255, 255])
