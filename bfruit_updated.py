@@ -105,8 +105,8 @@ class EndGame:
         self.creditsb = int(newscore)
         if self.creditsb > scrb:
             self.winsound.play(0)
-            font = pygame.font.Font("data/BRISTRT0.TTF", 130)
-            text_surface = font.render("You have a new high score!!!", True, [255, 211, 0])
+            font = pygame.font.Font("data/BRISTRT0.TTF", 110)
+            text_surface = font.render("New high score!!!", True, [255, 211, 0])
             self.screen.blit(text_surface, self.CentralScreen)
 
             font = pygame.font.Font("data/BRISTRT0.TTF", 50)
@@ -116,6 +116,10 @@ class EndGame:
             self.screen.blit(text_surface, textpos)
 
             text_surface = font.render("New high score: "+str(newscore), True, [255, 255, 255])
+            textpos = self.CentralScreen
+            textpos[1] = textpos[1] + 230
+            self.screen.blit(text_surface, textpos)
+            text_surface = font.render("Press start to continue.", True, [255, 0, 0])
             textpos = self.CentralScreen
             textpos[1] = textpos[1] + 260
             self.screen.blit(text_surface, textpos)
