@@ -82,7 +82,7 @@ class Menu:
 # main menu###########################
 
 class EndGame:
-    def __init__(self, credits):
+    def __init__(self, scr, credits):
         self.screen = screen
         self.maincolor = [0, 0, 0]
         self.white = [255, 255, 255]
@@ -561,7 +561,7 @@ class Game:
         self.screen.blit(text_surface, (60, 160))
         
     def endthegame(self, scr):
-        plc = EndGame(scr,self.credit)
+        plc = EndGame(scr, self.credit)
     
     
         
