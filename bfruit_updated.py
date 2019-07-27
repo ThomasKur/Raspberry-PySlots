@@ -294,7 +294,7 @@ class Game:
             self.screen.blit(self.windowlayer, (0, 0))
 
             if self.credit == 0 and self.bet == 0:
-                self.endthegame(scr, self.credit)
+                self.endthegame(self.credit)
                 
             
             if self.keys == 0 and self.menu == "h":
