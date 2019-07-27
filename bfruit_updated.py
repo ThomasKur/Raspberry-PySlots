@@ -104,7 +104,7 @@ class EndGame:
         scrb = int(scr)
         self.creditsb = int(credits)
         if self.creditsb > scrb:
-            self.winsound.play()
+            self.winsound.play(0)
             font = pygame.font.Font("data/BRISTRT0.TTF", 130)
             text_surface = font.render("You have a new high score!!!", True, [255, 211, 0])
             self.screen.blit(text_surface, self.CentralScreen)
@@ -122,7 +122,7 @@ class EndGame:
             self.NewHighscoreLedOn()
             self.writehs(myhsfile)
         elif self.creditsb == 0:
-            self.gameoversound.play()
+            self.gameoversound.play(0)
             font = pygame.font.Font("data/BRISTRT0.TTF", 130)
             text_surface = font.render("Looser", True, [255, 211, 0])
 
@@ -169,10 +169,11 @@ class EndGame:
         pygame.display.update()
 
         # mainloop
-        for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN:
-                self.NewHighscoreLedOff()
-                plc = Menu()
+        while True:
+            for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN:
+                    self.NewHighscoreLedOff()
+                    plc = Menu()
 
     def writehs(self, myhsfile):
         writef = open(myhsfile, "w")
