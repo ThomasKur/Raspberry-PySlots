@@ -102,10 +102,10 @@ class EndGame:
         # 3rd layer: transparent image
         
         scrb = int(scr)
-        creditsb = int(credits)
-        if creditsb > scrb:
+        self.creditsb = int(credits)
+        if self.creditsb > scrb:
             self.winsound.play()
-            font = pygame.font.Font("data/BRISTRT0.TTF", 150)
+            font = pygame.font.Font("data/BRISTRT0.TTF", 130)
             text_surface = font.render("You have a new high score!!!", True, [255, 0, 0])
             self.screen.blit(text_surface, self.CentralScreen)
 
@@ -120,26 +120,26 @@ class EndGame:
             self.screen.blit(text_surface, textpos)
             self.NewHighscoreLedOn()
             self.writehs(myhsfile)
-        elif creditsb == 0:
+        elif self.creditsb == 0:
             self.gameoversound.play()
-            font = pygame.font.Font("data/BRISTRT0.TTF", 150)
+            font = pygame.font.Font("data/BRISTRT0.TTF", 130)
             text_surface = font.render("Looser", True, [255, 0, 0])
 
             self.screen.blit(text_surface, self.CentralScreen)
 
-            font = pygame.font.Font("data/BRISTRT0.TTF", 80)
+            font = pygame.font.Font("data/BRISTRT0.TTF", 60)
             text_surface = font.render("You ended the game with 0 points...press ok to continue", True, [255, 0, 0])
             textpos = self.CentralScreen
             textpos[1] = textpos[1] + 200
             self.screen.blit(text_surface, textpos)
             
         else:
-            font = pygame.font.Font("data/BRISTRT0.TTF", 150)
+            font = pygame.font.Font("data/BRISTRT0.TTF", 130)
             text_surface = font.render("Game Over", True, [255, 0, 0])
 
             self.screen.blit(text_surface, self.CentralScreen)
 
-            font = pygame.font.Font("data/BRISTRT0.TTF", 80)
+            font = pygame.font.Font("data/BRISTRT0.TTF", 60)
             text_surface = font.render("You ended the game, but you don't have a new high score...press ok to continue", True, [255, 0, 0])
             textpos = self.CentralScreen
             textpos[1] = textpos[1] + 200
@@ -165,7 +165,7 @@ class EndGame:
 
     def writehs(self, myhsfile):
         writef = open(myhsfile, "w")
-        writef.write(str(self.credit))
+        writef.write(str(self.creditsb))
         writef.close()
 
     def NewHighscoreLedOn (self):
@@ -294,8 +294,7 @@ class Game:
             self.screen.blit(self.windowlayer, (0, 0))
 
             if self.credit == 0 and self.bet == 0:
-                
-                self.endthegame(scr)
+                self.endthegame(scr,self.credit)
                 
             
             if self.keys == 0 and self.menu == "h":
