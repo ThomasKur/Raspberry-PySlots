@@ -82,7 +82,7 @@ class Menu:
 # main menu###########################
 
 class EndGame:
-    def __init__(self, scr, credits):
+    def __init__(self, scr, newscore):
         self.screen = screen
         self.maincolor = [0, 0, 0]
         self.white = [255, 255, 255]
@@ -110,12 +110,12 @@ class EndGame:
             self.screen.blit(text_surface, self.CentralScreen)
 
             font = pygame.font.Font("data/BRISTRT0.TTF", 50)
-            text_surface = font.render("Old high score: "+scr, True, [255, 255, 255])
+            text_surface = font.render("Old high score: "+str(scr), True, [255, 255, 255])
             textpos = self.CentralScreen
             textpos[1] = textpos[1] + 200
             self.screen.blit(text_surface, textpos)
 
-            text_surface = font.render("New high score: "+str(credits), True, [255, 255, 255])
+            text_surface = font.render("New high score: "+str(newscore), True, [255, 255, 255])
             textpos = self.CentralScreen
             textpos[1] = textpos[1] + 260
             self.screen.blit(text_surface, textpos)
@@ -156,12 +156,12 @@ class EndGame:
             textpos[1] = textpos[1] + 260
             self.screen.blit(text_surface, textpos)
 
-            text_surface = font.render("High score: "+scr, True, [255, 255, 255])
+            text_surface = font.render("High score: "+str(scr), True, [255, 255, 255])
             textpos = self.CentralScreen
             textpos[1] = textpos[1] + 340
             self.screen.blit(text_surface, textpos)
 
-            text_surface = font.render("Your score: "+str(credits), True, [255, 255, 255])
+            text_surface = font.render("Your score: "+str(newscore), True, [255, 255, 255])
             textpos = self.CentralScreen
             textpos[1] = textpos[1] + 400
             self.screen.blit(text_surface, textpos)
@@ -199,7 +199,7 @@ class Game:
         self.keys = 1
         self.credit = 20
         self.bet = 1
-        self.lastwin = 0
+        self.woncredits = 0
         self.show = []
         self.SlotPosition = [250,40]
         self.SlotItemSize = [330,330]
@@ -306,13 +306,13 @@ class Game:
             self.screen.blit(self.windowlayer, (0, 0))
 
             if self.credit == 0 and self.bet == 0:
-                self.endthegame(self.credit)
+                self.endthegame(scr,self.woncredits)
                 
             
             if self.keys == 0 and self.menu == "h":
                 self.helpmenu()
             if self.keys == 0 and self.menu == "e":
-                self.endthegame(self.credit)
+                self.endthegame(scr,self.woncredits)
             
             pygame.display.update()
     
@@ -445,7 +445,7 @@ class Game:
         self.screen.blit(text_surface, (self.StatisticPosition[0], self.StatisticPosition[1] + 3 * self.StatisitcRowSpace))
         
         digifont = pygame.font.Font("data/DIGITAL2.ttf",self.StatisitcFontSize)
-        text_surface = digifont.render(str(self.lastwin), True, [255, 0, 0])
+        text_surface = digifont.render(str(self.woncredits), True, [255, 0, 0])
         self.screen.blit(text_surface, (self.StatisticPosition[0], self.StatisticPosition[1] + 4 * self.StatisitcRowSpace))
         
         font = pygame.font.Font("data/LiberationSans-Regular.ttf", 30)
@@ -532,7 +532,7 @@ class Game:
         if winsum > 0:
             print(winsum)
             self.credit = self.credit + winsum
-            self.lastwin = self.lastwin + winsum
+            self.woncredits = self.woncredits + winsum
             self.beepsound.play()
             self.WinnerLedOn() ## Set GPIO pin 26 High
             
@@ -572,8 +572,8 @@ class Game:
         text_surface = font.render("To close this as game over help press F1", True, [255, 255, 255])
         self.screen.blit(text_surface, (60, 160))
         
-    def endthegame(self, scr):
-        plc = EndGame(scr, self.lastwin)
+    def endthegame(self, scr, winpoints):
+        plc = EndGame(scr, winpoints)
     
     
         
