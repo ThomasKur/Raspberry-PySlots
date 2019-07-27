@@ -88,8 +88,8 @@ class EndGame:
         self.white = [255, 255, 255]
         self.red = [255, 0, 0]
         self.bsound = pygame.mixer.Sound("data/sounds/CLICK10A.WAV")
-        self.winsound = pygame.mixer.Sound("data/sounds/film_projector.wav")
-        self.gameoversound = pygame.mixer.Sound("data/sounds/film_projector.wav")
+        self.winsound = pygame.mixer.Sound("data/sounds/Win.ogg")
+        self.gameoversound = pygame.mixer.Sound("data/sounds/GameOver.ogg")
         self.CentralScreen = [460,340]
         GPIO.output(37,True) 
         GPIO.output(38,True)
@@ -106,7 +106,7 @@ class EndGame:
         if self.creditsb > scrb:
             self.winsound.play()
             font = pygame.font.Font("data/BRISTRT0.TTF", 130)
-            text_surface = font.render("You have a new high score!!!", True, [255, 0, 0])
+            text_surface = font.render("You have a new high score!!!", True, [255, 211, 0])
             self.screen.blit(text_surface, self.CentralScreen)
 
             font = pygame.font.Font("data/BRISTRT0.TTF", 50)
@@ -124,7 +124,7 @@ class EndGame:
         elif self.creditsb == 0:
             self.gameoversound.play()
             font = pygame.font.Font("data/BRISTRT0.TTF", 130)
-            text_surface = font.render("Looser", True, [255, 0, 0])
+            text_surface = font.render("Looser", True, [255, 211, 0])
 
             self.screen.blit(text_surface, self.CentralScreen)
 
@@ -141,7 +141,7 @@ class EndGame:
             
         else:
             font = pygame.font.Font("data/BRISTRT0.TTF", 130)
-            text_surface = font.render("Game Over", True, [255, 0, 0])
+            text_surface = font.render("Game Over", True, [255, 211, 0])
 
             self.screen.blit(text_surface, self.CentralScreen)
 
