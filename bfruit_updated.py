@@ -573,7 +573,7 @@ class Game:
         self.screen.blit(text_surface, (60, 160))
         
     def endthegame(self, scr):
-        plc = EndGame(scr, self.credit)
+        plc = EndGame(scr, self.lastwin)
     
     
         
