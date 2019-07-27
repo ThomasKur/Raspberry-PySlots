@@ -82,7 +82,7 @@ class Menu:
 # main menu###########################
 
 class EndGame:
-    def __init__(self, scr,credits):
+    def __init__(self, credits):
         self.screen = screen
         self.maincolor = [0, 0, 0]
         self.white = [255, 255, 255]
@@ -106,7 +106,7 @@ class EndGame:
         if self.creditsb > scrb:
             self.winsound.play()
             font = pygame.font.Font("data/BRISTRT0.TTF", 130)
-            text_surface = font.render("You have a new high score!!!", True, [255, 0, 0])
+            text_surface = font.render("You have a new high score!!! Press start to continue.", True, [255, 0, 0])
             self.screen.blit(text_surface, self.CentralScreen)
 
             text_surface = font.render("Old high score: "+scr, True, [255, 255, 255])
@@ -128,7 +128,7 @@ class EndGame:
             self.screen.blit(text_surface, self.CentralScreen)
 
             font = pygame.font.Font("data/BRISTRT0.TTF", 60)
-            text_surface = font.render("You ended the game with 0 points...press ok to continue", True, [255, 0, 0])
+            text_surface = font.render("You ended the game with 0 points...press start to continue.", True, [255, 0, 0])
             textpos = self.CentralScreen
             textpos[1] = textpos[1] + 200
             self.screen.blit(text_surface, textpos)
@@ -140,7 +140,7 @@ class EndGame:
             self.screen.blit(text_surface, self.CentralScreen)
 
             font = pygame.font.Font("data/BRISTRT0.TTF", 60)
-            text_surface = font.render("You ended the game, but you don't have a new high score...press ok to continue", True, [255, 0, 0])
+            text_surface = font.render("You ended the game, but you don't have a new high score...press start to continue.", True, [255, 0, 0])
             textpos = self.CentralScreen
             textpos[1] = textpos[1] + 200
             self.screen.blit(text_surface, textpos)
@@ -294,13 +294,13 @@ class Game:
             self.screen.blit(self.windowlayer, (0, 0))
 
             if self.credit == 0 and self.bet == 0:
-                self.endthegame(scr,self.credit)
+                self.endthegame(scr, self.credit)
                 
             
             if self.keys == 0 and self.menu == "h":
                 self.helpmenu()
             if self.keys == 0 and self.menu == "e":
-                self.endthegame(scr)
+                self.endthegame(self.credit)
             
             pygame.display.update()
     
