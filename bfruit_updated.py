@@ -102,7 +102,7 @@ class EndGame:
         # 3rd layer: transparent image
         
         scrb = int(scr)
-        self.creditsb = int(credits)
+        self.creditsb = int(newscore)
         if self.creditsb > scrb:
             self.winsound.play(0)
             font = pygame.font.Font("data/BRISTRT0.TTF", 130)
@@ -307,7 +307,7 @@ class Game:
 
             if self.credit == 0 and self.bet == 0:
                 self.endthegame(scr,self.woncredits)
-                
+                time.sleep(2)
             
             if self.keys == 0 and self.menu == "h":
                 self.helpmenu()
