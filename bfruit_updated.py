@@ -257,7 +257,6 @@ class Game:
         while True:
             self.screen.fill([0, 0, 0])
             self.screen.blit(self.background, (0, 0))
-            pygame.event.clear()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     exit()
