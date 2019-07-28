@@ -52,7 +52,7 @@ class Menu:
         if pygame.mixer.music.get_busy() == False:
             pygame.mixer.music.load("data/sounds/Backgroundmusic.ogg")  
             pygame.mixer.music.play(-1)  
-            pygame.mixer.music.set_volume(0.8)
+            pygame.mixer.music.set_volume(0.5)
 
         GPIO.output(37,False) 
         GPIO.output(38,True)
@@ -87,7 +87,7 @@ class Menu:
 # main menu###########################
 
 class EndGame:
-    def __init__(self, scr, newscore):
+    def __init__(self, scrold, newscore):
         self.screen = screen
         self.maincolor = [0, 0, 0]
         self.white = [255, 255, 255]
@@ -106,7 +106,7 @@ class EndGame:
         
         # 3rd layer: transparent image
         
-        scrb = int(scr)
+        scrb = int(scrold)
         self.creditsb = int(newscore)
         if self.creditsb > scrb:
             self.winsound.play(0)
@@ -115,21 +115,22 @@ class EndGame:
             self.screen.blit(text_surface, self.CentralScreen)
 
             font = pygame.font.Font("data/BRISTRT0.TTF", 50)
-            text_surface = font.render("Old high score: "+str(scr), True, [255, 255, 255])
+            text_surface = font.render("Old high score: "+str(scrold), True, [255, 255, 255])
             textpos = self.CentralScreen
             textpos[1] = textpos[1] + 200
             self.screen.blit(text_surface, textpos)
 
             text_surface = font.render("New high score: "+str(newscore), True, [255, 255, 255])
             textpos2 = self.CentralScreen
-            textpos2[1] = textpos2[1] + 230
+            textpos2[1] = textpos2[1] + 60
             self.screen.blit(text_surface, textpos2)
             text_surface = font.render("Press start to continue.", True, [255, 0, 0])
             textpos3 = self.CentralScreen
-            textpos3[1] = textpos3[1] + 260
+            textpos3[1] = textpos3[1] + 60
             self.screen.blit(text_surface, textpos2)
             self.NewHighscoreLedOn()
             self.writehs(myhsfile,newscore)
+            global scr
             scr = newscore
         elif self.creditsb == 0:
             self.gameoversound.play(0)
@@ -146,7 +147,7 @@ class EndGame:
             font = pygame.font.Font("data/BRISTRT0.TTF", 50)
             text_surface = font.render("Press start to continue.", True, [255, 0, 0])
             textpos2 = self.CentralScreen
-            textpos2[1] = textpos2[1] + 260
+            textpos2[1] = textpos2[1] + 60
             self.screen.blit(text_surface, textpos2)
             
         else:
@@ -164,17 +165,17 @@ class EndGame:
 
             text_surface = font.render("Press start to continue.", True, [255, 0, 0])
             textpos2 = self.CentralScreen
-            textpos2[1] = textpos2[1] + 220
+            textpos2[1] = textpos2[1] + 60
             self.screen.blit(text_surface, textpos2)
 
-            text_surface = font.render("High score: "+str(scr), True, [255, 255, 255])
+            text_surface = font.render("High score: "+str(scrold), True, [255, 255, 255])
             textpos3 = self.CentralScreen
-            textpos3[1] = textpos3[1] + 240
+            textpos3[1] = textpos3[1] + 60
             self.screen.blit(text_surface, textpos3)
 
             text_surface = font.render("Your score: "+str(newscore), True, [255, 255, 255])
             textpos4 = self.CentralScreen
-            textpos4[1] = textpos4[1] + 260
+            textpos4[1] = textpos4[1] + 60
             self.screen.blit(text_surface, textpos4)
         
         pygame.display.update()
@@ -317,8 +318,9 @@ class Game:
             self.screen.blit(self.windowlayer, (0, 0))
 
             if self.credit == 0 and self.bet == 0:
+                time.sleep(3)
                 self.endthegame(scr,self.woncredits)
-                time.sleep(2)
+                
             
             if self.keys == 0 and self.menu == "h":
                 self.helpmenu()
@@ -623,6 +625,7 @@ if __name__ == "__main__":
     if os.path.exists(myhsfile) == False:
         open(myhsfile, "w").close()
     hsf = open(myhsfile, "r+")
+    global scr
     scr = hsf.readline() # high score
     hsf.close()
     if scr == "":
