@@ -50,7 +50,7 @@ class Menu:
         self.backgroundadded = pygame.image.load("data/menubg/backgroundMenu.png")
         
         if pygame.mixer.music.get_busy() == False:
-            pygame.mixer.music.load("data/sounds/Win.ogg")  
+            pygame.mixer.music.load("data/sounds/Backgroundmusic.ogg")  
             pygame.mixer.music.play(-1)  
             pygame.mixer.music.set_volume(0.8)
 
