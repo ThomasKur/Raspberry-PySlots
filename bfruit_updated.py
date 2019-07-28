@@ -29,7 +29,7 @@ import RPi.GPIO as GPIO ## Import GPIO library for Raspberry Pi
 import time
 import os
 
-VERSION = "0.1.2"
+VERSION = "0.1.5"
 
 
 
@@ -90,7 +90,7 @@ class EndGame:
         self.bsound = pygame.mixer.Sound("data/sounds/CLICK10A.WAV")
         self.winsound = pygame.mixer.Sound("data/sounds/Win.ogg")
         self.gameoversound = pygame.mixer.Sound("data/sounds/GameOver.ogg")
-        self.CentralScreen = [460,340]
+        self.CentralScreen = [360,340]
         GPIO.output(37,True) 
         GPIO.output(38,True)
         GPIO.output(40,True)
@@ -116,13 +116,13 @@ class EndGame:
             self.screen.blit(text_surface, textpos)
 
             text_surface = font.render("New high score: "+str(newscore), True, [255, 255, 255])
-            textpos = self.CentralScreen
-            textpos[1] = textpos[1] + 230
-            self.screen.blit(text_surface, textpos)
+            textpos2 = self.CentralScreen
+            textpos2[1] = textpos2[1] + 230
+            self.screen.blit(text_surface, textpos2)
             text_surface = font.render("Press start to continue.", True, [255, 0, 0])
-            textpos = self.CentralScreen
-            textpos[1] = textpos[1] + 260
-            self.screen.blit(text_surface, textpos)
+            textpos3 = self.CentralScreen
+            textpos3[1] = textpos3[1] + 260
+            self.screen.blit(text_surface, textpos2)
             self.NewHighscoreLedOn()
             self.writehs(myhsfile,newscore)
             scr = newscore
@@ -140,11 +140,12 @@ class EndGame:
             self.screen.blit(text_surface, textpos)
             font = pygame.font.Font("data/BRISTRT0.TTF", 50)
             text_surface = font.render("Press start to continue.", True, [255, 0, 0])
-            textpos = self.CentralScreen
-            textpos[1] = textpos[1] + 260
-            self.screen.blit(text_surface, textpos)
+            textpos2 = self.CentralScreen
+            textpos2[1] = textpos2[1] + 260
+            self.screen.blit(text_surface, textpos2)
             
         else:
+            self.gameoversound.play(0)
             font = pygame.font.Font("data/BRISTRT0.TTF", 130)
             text_surface = font.render("Game Over", True, [255, 211, 0])
 
@@ -157,19 +158,19 @@ class EndGame:
             self.screen.blit(text_surface, textpos)
 
             text_surface = font.render("Press start to continue.", True, [255, 0, 0])
-            textpos = self.CentralScreen
-            textpos[1] = textpos[1] + 220
-            self.screen.blit(text_surface, textpos)
+            textpos2 = self.CentralScreen
+            textpos2[1] = textpos2[1] + 220
+            self.screen.blit(text_surface, textpos2)
 
             text_surface = font.render("High score: "+str(scr), True, [255, 255, 255])
-            textpos = self.CentralScreen
-            textpos[1] = textpos[1] + 240
-            self.screen.blit(text_surface, textpos)
+            textpos3 = self.CentralScreen
+            textpos3[1] = textpos3[1] + 240
+            self.screen.blit(text_surface, textpos3)
 
             text_surface = font.render("Your score: "+str(newscore), True, [255, 255, 255])
-            textpos = self.CentralScreen
-            textpos[1] = textpos[1] + 260
-            self.screen.blit(text_surface, textpos)
+            textpos4 = self.CentralScreen
+            textpos4[1] = textpos4[1] + 260
+            self.screen.blit(text_surface, textpos4)
         
         pygame.display.update()
 
@@ -579,16 +580,14 @@ class Game:
         
     def endthegame(self, scr, winpoints):
         plc = EndGame(scr, winpoints)
-    
-    
-        
+           
 
 def help():
     print("BFruit help:")
     print("Options:")
     print("-h, --help        display this help message")
     print("-v, --version     display game version")
-    print("Contact: nxbalazs@gmail.com")
+    print("Contact: Github https://github.com/ThomasKur/Raspberry-PySlots")
 
 if __name__ == "__main__":
     try:
@@ -628,8 +627,9 @@ if __name__ == "__main__":
     pygame.init()
     screen = pygame.display.set_mode([1920,1080])
     pygame.display.toggle_fullscreen()
-    pygame.display.set_caption("Rocker Slot")
+    pygame.display.set_caption("Slot Machine")
     pygame.mouse.set_visible(False)
-        
+    pygame.mixer.music.load("data/sounds/Backgroundmusic.ogg")  
+    pygame.mixer.music.play(-1)  
     plc = Menu()
     pygame.display.update()
