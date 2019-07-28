@@ -58,6 +58,7 @@ class Menu:
         GPIO.output(38,True)
         GPIO.output(40,True)
         # mainloop
+        pygame.event.clear()
         while True:
             for self.event in pygame.event.get():
                 if self.event.type == pygame.QUIT:
@@ -256,6 +257,7 @@ class Game:
         while True:
             self.screen.fill([0, 0, 0])
             self.screen.blit(self.background, (0, 0))
+            pygame.event.clear()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     exit()
