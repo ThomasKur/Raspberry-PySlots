@@ -131,7 +131,7 @@ class EndGame:
             self.NewHighscoreLedOn()
             self.writehs(myhsfile,newscore)
             global scr
-            scr = newscore
+            scr = str(newscore)
         elif self.creditsb == 0:
             self.gameoversound.play(0)
             font = pygame.font.Font("data/BRISTRT0.TTF", 130)
@@ -140,7 +140,7 @@ class EndGame:
             self.screen.blit(text_surface, self.CentralScreen)
 
             font = pygame.font.Font("data/BRISTRT0.TTF", 50)
-            text_surface = font.render("You ended the game with 0 points...", True, [255, 0, 0])
+            text_surface = font.render("You ended the game with 0 points...", True, [255, 255, 255])
             textpos = self.CentralScreen
             textpos[1] = textpos[1] + 200
             self.screen.blit(text_surface, textpos)
@@ -163,11 +163,6 @@ class EndGame:
             textpos[1] = textpos[1] + 200
             self.screen.blit(text_surface, textpos)
 
-            text_surface = font.render("Press start to continue.", True, [255, 0, 0])
-            textpos2 = self.CentralScreen
-            textpos2[1] = textpos2[1] + 60
-            self.screen.blit(text_surface, textpos2)
-
             text_surface = font.render("High score: "+str(scrold), True, [255, 255, 255])
             textpos3 = self.CentralScreen
             textpos3[1] = textpos3[1] + 60
@@ -177,6 +172,11 @@ class EndGame:
             textpos4 = self.CentralScreen
             textpos4[1] = textpos4[1] + 60
             self.screen.blit(text_surface, textpos4)
+
+            text_surface = font.render("Press start to continue.", True, [255, 0, 0])
+            textpos2 = self.CentralScreen
+            textpos2[1] = textpos2[1] + 60
+            self.screen.blit(text_surface, textpos2)
         
         pygame.display.update()
 
@@ -318,7 +318,7 @@ class Game:
             self.screen.blit(self.windowlayer, (0, 0))
 
             if self.credit == 0 and self.bet == 0:
-                time.sleep(3)
+                time.sleep(2)
                 self.endthegame(scr,self.woncredits)
                 
             
