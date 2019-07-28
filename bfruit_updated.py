@@ -179,7 +179,7 @@ class EndGame:
             self.screen.blit(text_surface, textpos2)
         
         pygame.display.update()
-
+        pygame.event.clear()
         # mainloop
         while True:
             for event in pygame.event.get():
@@ -318,7 +318,7 @@ class Game:
             self.screen.blit(self.windowlayer, (0, 0))
 
             if self.credit == 0 and self.bet == 0:
-                time.sleep(2)
+                time.sleep(1)
                 self.endthegame(scr,self.woncredits)
                 
             
