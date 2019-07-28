@@ -55,7 +55,7 @@ class Menu:
             pygame.mixer.music.set_volume(0.5)
 
         GPIO.output(37,False) 
-        GPIO.output(38,True)
+        GPIO.output(38,False)
         GPIO.output(40,True)
         # mainloop
         pygame.event.clear()
@@ -553,7 +553,7 @@ class Game:
     def WinnerLedOn (self):
         GPIO.output(37,False) 
         GPIO.output(38,False)
-        GPIO.output(40,True)
+        GPIO.output(40,False)
 
     def WinnerLedOff (self):
         GPIO.output(37,True) ## Set on GPIO pin 37 Low
@@ -562,7 +562,7 @@ class Game:
 
     def RunningLedOn (self):
         GPIO.output(37,False) 
-        GPIO.output(38,True)
+        GPIO.output(38,False)
         GPIO.output(40,True)
 
     def RunningLedOff (self):
