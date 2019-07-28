@@ -46,9 +46,14 @@ class Menu:
         self.white = [255, 255, 255]
         self.red = [255, 0, 0]
         self.bsound = pygame.mixer.Sound("data/sounds/CLICK10A.WAV")
-        
+            
         self.backgroundadded = pygame.image.load("data/menubg/backgroundMenu.png")
         
+        if pygame.mixer.music.get_busy() == False:
+            pygame.mixer.music.load("data/sounds/Backgroundmusic.ogg")  
+            pygame.mixer.music.play(-1)  
+            pygame.mixer.music.set_volume(0.8)
+
         GPIO.output(37,False) 
         GPIO.output(38,True)
         GPIO.output(40,True)
@@ -629,7 +634,5 @@ if __name__ == "__main__":
     pygame.display.toggle_fullscreen()
     pygame.display.set_caption("Slot Machine")
     pygame.mouse.set_visible(False)
-    pygame.mixer.music.load("data/sounds/Backgroundmusic.ogg")  
-    pygame.mixer.music.play(-1)  
     plc = Menu()
     pygame.display.update()
